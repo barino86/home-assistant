@@ -1,0 +1,10 @@
+*
+*/
+!.gitignore
+!README.md
+!CHANGELOG.md
+!LICENSE
+!groups.yaml
+!customize.yaml
+!configuration.yaml
+!scripts.yaml

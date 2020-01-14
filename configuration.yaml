@@ -1,0 +1,122 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: zHome
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret home_elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+  # Customization file
+  customize: !include customize.yaml
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Show the introduction message on startup.
+#introduction:
+
+discovery:
+  ignore:
+    - homekit
+    - roku
+  
+system_health: 
+
+custom_updater:
+
+frontend:
+  # Add themes
+  themes: !include includes/themes.yaml
+  # Enable ES6 features
+  javascript_version: latest
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+#  api_password: !secret api_password
+#  ssl_certificate: !secret ssl_certificate
+#  ssl_key: !secret ssl_key
+  base_url: !secret base_url
+  server_port: !secret server_port
+  ip_ban_enabled: True
+  login_attempts_threshold: 10
+
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+    language: 'en-us'
+
+logger:
+  default: warn
+#  logs:
+#    homeassistant.components.media_player.office_roku_tv: error
+#    homeassistant.components.media_player.living_room_roku_tv: error
+
+history: 
+  exclude:
+    domains:
+#      - updater
+      - sun
+#      - group
+#      - mqtt
+#      - script
+#      - device_tracker
+#      - input_select
+#      - input_boolean
+#      - history_graph
+    entities:
+      - sun.sun # Don't record sun data
+      - sensor.last_boot # Comes from 'systemmonitor' sensor platform
+      - sensor.date
+
+sun:
+
+map: 
+
+digital_ocean:
+  access_token: !secret digitalocean_token
+
+zwave: 
+  usb_path: /dev/ttyACM0
+  network_key: !secret zwave_network_key
+
+telegram_bot: !include components/telegram_bot.yaml
+group: !include groups.yaml
+automation: !include_dir_merge_list automations/
+#script: !include_dir_merge_list scripts/
+script: !include scripts.yaml
+panel_iframe: !include includes/iframes.yaml
+device_tracker: !include components/device_trackers.yaml
+sensor: !include_dir_merge_list sensors/
+switch: !include_dir_merge_list switches/
+sabnzbd: !include components/sabnzbd.yaml
+notify: !include includes/notifiers.yaml
+#mqtt: !include includes/mqtt.yaml
+influxdb: !include includes/influxdb.yaml
+camera: !include components/cameras.yaml
+remote: !include components/remotes.yaml
+coinbase: !include components/coinbase.yaml
+cloudflare: !include components/cloudflare.yaml
+zoneminder: !include components/zoneminder.yaml
+binary_sensor: !include includes/binary_sensors.yaml
+input_boolean: !include includes/input_boolean.yaml
+input_select: !include includes/input_select.yaml
+#input_number: !include includes/input_number.yaml
+zone: !include components/zones.yaml
+openuv: !include components/openuv.yaml
+google_assistant: !include components/google_assistant.yaml
+recorder: !include includes/recorder_mariadb.yaml
+apcupsd: !include components/apcupsd.yaml
+vacuum: !include components/roborock_s6.yaml
+roku: !include components/roku.yaml
+pi_hole: !include components/pihole.yaml
+cast: !include includes/cast.yaml
+plant: !include components/plant.yaml
+
+#cloud: !include includes/cloud.yaml
+#media_player: !include includes/media_players.yaml
+#shell_command: !include includes/shell_commands.yaml

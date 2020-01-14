@@ -1,0 +1,779 @@
+zwave_network_on:
+  alias: 'Zwave Network On'
+  sequence:
+    - condition: or
+      conditions: 
+        - condition: template
+          value_template: '{{ states.zwave.homeseer_hswd200_bedroom_dimmer.state == "ready" }} or {{ states.zwave.homeseer_hswd200_bedroom_dimmer.state == "initializing" }}'
+        - condition: template
+          value_template: '{{ states.zwave.homeseer_hswd200_garage_dimmer.state == "ready" }} or {{ states.zwave.homeseer_hswd200_garage_dimmer.state == "initializing" }}'
+        - condition: template
+          value_template: '{{ states.zwave.homeseer_hswd200_porch_dimmer.state == "ready" }} or {{ states.zwave.homeseer_hswd200_porch_dimmer.state == "initializing" }}'
+        - condition: template
+          value_template: '{{ states.zwave.homeseer_hswd200_patio_dimmer.state == "ready" }} or {{ states.zwave.homeseer_hswd200_patio_dimmer.state == "initializing" }}'
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.zwave_network_status
+#    - service: notify.telegram
+#      data:
+#        message: 'Zwave network ready.'
+zwave_network_off:
+  alias: 'Zwave Network Off'
+  sequence:
+    - condition: or
+      conditions: 
+        - condition: template
+          value_template: '{{ states.zwave.homeseer_hswd200_bedroom_dimmer.state != "ready" }} and {{ states.zwave.homeseer_hswd200_bedroom_dimmer.state != "initializing" }}'
+        - condition: template
+          value_template: '{{ states.zwave.homeseer_hswd200_garage_dimmer.state != "ready" }} and {{ states.zwave.homeseer_hswd200_garage_dimmer.state != "initializing" }}'
+        - condition: template
+          value_template: '{{ states.zwave.homeseer_hswd200_porch_dimmer.state != "ready" }} and {{ states.zwave.homeseer_hswd200_porch_dimmer.state != "initializing" }}'
+        - condition: template
+          value_template: '{{ states.zwave.homeseer_hswd200_patio_dimmer.state != "ready" }} and {{ states.zwave.homeseer_hswd200_patio_dimmer.state != "initializing" }}'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.zwave_network_status
+    - service: notify.telegram
+      data:
+        message: 'Zwave network not ready.'
+indicator7_abode_away:
+  alias: 'Indicator 7 Abode Away'
+  sequence:
+    - condition: state
+      entity_id: alarm_control_panel.abode_alarm
+      state: 'armed_away'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 27
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 27
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 27
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 27
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 31
+        value: 64
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 31
+        value: 64
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 31
+        value: 64
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 21
+        parameter: 31
+        value: 64
+      service: zwave.set_config_parameter
+indicator7_abode_home:
+  alias: 'Indicator 7 Abode Home'
+  sequence:
+    - condition: state
+      entity_id: alarm_control_panel.abode_alarm
+      state: 'armed_home'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 27
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 27
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 27
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 27
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 21
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter
+indicator7_abode_disarmed:
+  alias: 'Indicator 7 Abode Disarmed'
+  sequence:
+    - condition: state
+      entity_id: alarm_control_panel.abode_alarm
+      state: 'disarmed'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 27
+        value: Green
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 27
+        value: Green
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 27
+        value: Green
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 27
+        value: Green
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 21
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter
+indicator6_ecobee_heat:
+  alias: 'Indicator 6 Ecobee Heat'
+  sequence:
+    - condition: template
+      value_template: '{{ states.climate.main_floor.state == "heat" }}'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 26
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 26
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 26
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 26
+        value: Red
+      service: zwave.set_config_parameter
+indicator6_ecobee_cool:
+  alias: 'Indicator 6 Ecobee Cool'
+  sequence:
+    - condition: template
+      value_template: '{{ states.climate.main_floor.state == "cool" }}'  
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 26
+        value: Blue
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 26
+        value: Blue
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 26
+        value: Blue
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 26
+        value: Blue
+      service: zwave.set_config_parameter
+indicator6_ecobee_off:
+  alias: 'Indicator 6 Ecobee Off'
+  sequence:
+    - condition: template
+      value_template: '{{ states.climate.main_floor.state == "off" }}'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 26
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 26
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 26
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 26
+        value: 'Off'
+      service: zwave.set_config_parameter
+indicator6_ecobee_auto:
+  alias: 'Indicator 6 Ecobee Auto'
+  sequence: 
+    - condition: template
+      value_template: '{{ states.climate.main_floor.state == "auto" }}'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 26
+        value: White
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 26
+        value: White
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 26
+        value: White
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 26
+        value: White
+      service: zwave.set_config_parameter
+indicator5_garage_door_open:
+  alias: 'Indicator 5 Garage Door Open'
+  sequence:
+    - condition: state
+      entity_id: binary_sensor.monoprice_garage_door_sensor_sensor
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 25
+        value: Magenta
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 25
+        value: Magenta
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 25
+        value: Magenta
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 25
+        value: Magenta
+      service: zwave.set_config_parameter
+indicator5_garage_door_closed:
+  alias: 'Indicator 5 Garage Door Closed'
+  sequence:
+    - condition: state
+      entity_id: binary_sensor.monoprice_garage_door_sensor_sensor
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 25
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 25
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 25
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 25
+        value: 'Off'
+      service: zwave.set_config_parameter
+indicator4_window_open:
+  alias: 'Indicator 5 Window Open'
+  sequence:
+    - condition: state
+      entity_id: group.security_windows
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 24
+        value: White
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 24
+        value: White
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 24
+        value: White
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 24
+        value: White
+      service: zwave.set_config_parameter
+indicator4_door_open:
+  alias: 'Indicator 5 Door Open'
+  sequence:
+    - condition: state
+      entity_id: group.security_doors
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 24
+        value: Blue
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 24
+        value: Blue
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 24
+        value: Blue
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 24
+        value: Blue
+      service: zwave.set_config_parameter
+indicator4_windowdoor_closed:
+  alias: 'Indicator 4 Window Door Closed'
+  sequence:
+    - condition: state
+      entity_id: group.security_doors
+      state: 'off'
+    - condition: state
+      entity_id: group.security_windows
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 24
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 24
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 24
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 24
+        value: 'Off'
+      service: zwave.set_config_parameter
+indicator3_weather_warning_off:
+  alias: 'Indicator 3 Weather Warning Off'
+  sequence:
+    - condition: state
+      entity_id: binary_sensor.protection_window
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 23
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 23
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 23
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 23
+        value: 'Off'
+      service: zwave.set_config_parameter
+indicator3_uv_protection_on:
+  alias: 'Indicator 3 UV Protection On'
+  sequence:
+    - condition: state
+      entity_id: binary_sensor.protection_window
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 23
+        value: Yellow
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 23
+        value: Yellow
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 23
+        value: Yellow
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 23
+        value: Yellow
+      service: zwave.set_config_parameter
+indicator2_downloads_on:
+  alias: 'Indicator 2 Downloads On'
+  sequence:
+    - condition: state
+      entity_id: input_boolean.download_status
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 22
+        value: Cyan
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 22
+        value: Cyan
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 22
+        value: Cyan
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 22
+        value: Cyan
+      service: zwave.set_config_parameter
+indicator2_downloads_off:
+  alias: 'Indicator 2 Downloads Off'
+  sequence:
+    - condition: state
+      entity_id: input_boolean.download_status
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 22
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 22
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 22
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 22
+        value: 'Off'
+      service: zwave.set_config_parameter
+indicator1_lights_on:
+  alias: 'Indicator 1 Lights On'
+  sequence:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: group.lights_indoor
+          state: 'on'
+          for: '00:03:00'
+        - condition: state
+          entity_id: group.lights_outdoor
+          state: 'on'
+          for: '00:03:00'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 21
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 21
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 21
+        value: Red
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 21
+        value: Red
+      service: zwave.set_config_parameter
+indicator1_lights_off:
+  alias: 'Indicator 1 Lights Off'
+  sequence:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: group.lights_indoor
+          state: 'off'
+        - condition: state
+          entity_id: group.lights_outdoor
+          state: 'off'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 21
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 21
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 21
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 21
+        value: 'Off'
+      service: zwave.set_config_parameter
+#indicator1_catchall_warning_on:
+#  alias: 'Indicator 1 Catchall Warning On'
+#  sequence:
+#    - condition: state
+#      entity_id: input_boolean.catchall_warning
+#      state: 'on'
+#    - data:
+#        node_id: 21
+#        parameter: 21
+#        value: Magenta
+#      service: zwave.set_config_parameter
+#    - data:
+#        node_id: 22
+#        parameter: 21
+#        value: Magenta
+#      service: zwave.set_config_parameter
+#    - data:
+#        node_id: 23
+#        parameter: 21
+#        value: Magenta
+#      service: zwave.set_config_parameter
+#    - data:
+#        node_id: 24
+#        parameter: 21
+#        value: Magenta
+#      service: zwave.set_config_parameter
+#indicator1_catchall_warning_off:
+#  alias: 'Indicator 1 Catchall Warning Off'
+#  sequence:
+#    - condition: state
+#      entity_id: input_boolean.catchall_warning
+#      state: 'off'
+#    - data:
+#        node_id: 21
+#        parameter: 21
+#        value: 'Off'
+#      service: zwave.set_config_parameter
+#    - data:
+#        node_id: 22
+#        parameter: 21
+#        value: 'Off'
+#      service: zwave.set_config_parameter
+#    - data:
+#        node_id: 23
+#        parameter: 21
+#        value: 'Off'
+#      service: zwave.set_config_parameter
+#    - data:
+#        node_id: 24
+#        parameter: 21
+#        value: 'Off'
+#      service: zwave.set_config_parameter
+indicator1_water_leak_on:
+  alias: 'Indicator 1 Water Leak Detected On'
+  sequence:
+    - condition: state
+      entity_id: group.leak_sensors_status
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 21
+        value: Cyan
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 21
+        parameter: 31
+        value: 1
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 21
+        value: Cyan
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 31
+        value: 1
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 21
+        value: Cyan
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 31
+        value: 1
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 21
+        value: Cyan
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 31
+        value: 1
+      service: zwave.set_config_parameter
+indicator1_water_leak_off:
+  alias: 'Indicator 1 Water Leak Detected Off'
+  sequence:
+    - condition: state
+      entity_id: group.leak_sensors_status
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.zwave_network_status
+      state: 'on'
+    - data:
+        node_id: 21
+        parameter: 21
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 21
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 21
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 22
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 21
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 23
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 21
+        value: 'Off'
+      service: zwave.set_config_parameter
+    - data:
+        node_id: 24
+        parameter: 31
+        value: 0
+      service: zwave.set_config_parameter 

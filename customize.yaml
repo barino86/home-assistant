@@ -1,0 +1,74 @@
+binary_sensor.fr_bay_window:
+  device_class: window
+binary_sensor.fr_left_window:
+  device_class: window
+binary_sensor.fr_right_window:
+  device_class: window
+binary_sensor.gr_left_window:
+  device_class: window
+binary_sensor.gr_right_window:
+  device_class: window
+binary_sensor.lr_center_window:
+  device_class: window
+binary_sensor.lr_left_window:
+  device_class: window
+binary_sensor.lr_right_window:
+  device_class: window
+binary_sensor.ppc_window:
+  device_class: window
+binary_sensor.dr_bay_window:
+  device_class: window
+binary_sensor.dr_center_window:
+  device_class: window
+binary_sensor.dr_left_window:
+  device_class: window
+binary_sensor.dr_right_window:
+  device_class: window
+binary_sensor.basement_door_sensor_contact:
+  device_class: door
+switch.transmission_vpn:
+  friendly_name: Transmission Alternate Speed
+  initial_state: 'off'
+binary_sensor.dome_doorwindow_sensor_sensor:
+  device_class: door
+binary_sensor.monoprice_garage_door_sensor_sensor:
+  device_class: garage_door
+binary_sensor.dome_motion_detector_sensor:
+  device_class: motion
+camera.doorbell:
+  friendly_name: Doorbell Camera
+camera.back:
+  friendly_name: Back Camera
+sensor.back_events:
+  friendly_name: Back Camera Events
+  unit_of_measurement: Events
+switch.back_state:
+  friendly_name: Back Camera State
+sensor.back_status:
+  friendly_name: Back Camera Status
+camera.front:
+  friendly_name: Front Camera
+sensor.front_events:
+  friendly_name: Front Camera Events
+switch.front_state:
+  friendly_name: Front Camera State
+binary_sensor.192_168_1_90_8154:
+  friendly_name: ZoneMinder Connectivity
+sensor.ups_battery:
+  friendly_name: APC UPS Battery
+sensor.ups_input_voltage:
+  friendly_name: APC UPS Input Voltage
+sensor.ups_load:
+  friendly_name: APC UPS Load
+binary_sensor.ups_online_status:
+  friendly_name: APC UPS Online Status
+sensor.ups_time_left:
+  friendly_name: APC UPS Time Left
+sensor.rocky_main_brush_left:
+  icon: mdi:gauge
+sensor.rocky_side_brush_left:
+  icon: mdi:gauge
+sensor.rocky_filter_left:
+  icon: mdi:gauge
+sensor.rocky_sensor_dirty_left:
+  icon: mdi:gauge

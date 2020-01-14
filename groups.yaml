@@ -1,0 +1,95 @@
+security_doors:
+  name: Door Contact Sensors
+  control: hidden
+  entities: 
+    - binary_sensor.back_door
+    - binary_sensor.front_door
+    - binary_sensor.garage_entry_door
+
+security_windows:
+  name: Window Contact Sensors
+  control: hidden
+  entities: 
+    - binary_sensor.dr_bay_window
+    - binary_sensor.dr_center_window
+    - binary_sensor.dr_left_window
+    - binary_sensor.dr_right_window
+    - binary_sensor.fr_bay_window
+    - binary_sensor.fr_left_window
+    - binary_sensor.fr_right_window
+    - binary_sensor.gr_left_window
+    - binary_sensor.gr_right_window
+    - binary_sensor.lr_center_window
+    - binary_sensor.lr_left_window
+    - binary_sensor.lr_right_window
+    - binary_sensor.ppc_window
+
+family_phones:
+  name: Family Phones
+  control: hidden
+  entities: 
+    - device_tracker.nexus_5x
+    - device_tracker.pixel_3
+
+family_location:
+  name: Family Location
+  control: hidden
+  entities: 
+    - device_tracker.anand_pixel3
+    - device_tracker.veena_nexus5x
+
+guest_phones:
+  name: Guest Phones
+  control: hidden
+  entities: 
+    - device_tracker.johan
+    - device_tracker.corietha
+    - device_tracker.genevieesiphone
+    - device_tracker.dad
+    - device_tracker.mom
+
+lights_outdoor:
+  name: Lights Group Outdoor
+  entities: 
+    - light.homeseer_hswd200_garage_dimmer_level
+    - light.homeseer_hswd200_patio_dimmer_level
+    - light.homeseer_hswd200_porch_dimmer_level
+
+lights_indoor:
+  name: Lights Group Indoor
+  entities: 
+    - light.tv_light_1
+    - light.tv_light_2
+    - switch.island_lights
+    - switch.basement_lights
+    - light.sink_light
+    - light.homeseer_hswd200_bedroom_dimmer_level
+    - switch.living_room_fan_light
+
+lights_1stfloor:
+  name: Lights Group 1st Floor
+  entities: 
+    - switch.island_lights
+    - light.sink_light
+    - light.tv_light_1
+    - light.tv_light_2
+    - switch.living_room_fan_light
+
+ecobee_occupancy_sensors:
+  name: Ecobee Occupancy Sensors
+  control: hidden
+  entities: 
+    - binary_sensor.main_floor_occupancy
+    - binary_sensor.master_bedroom_occupancy
+    - binary_sensor.niahs_room_occupancy
+    - binary_sensor.nivys_room_occupancy
+    - binary_sensor.office_occupancy
+    - binary_sensor.basement_occupancy
+
+leak_sensors_status:
+  name: Leak Sensors Status
+  control: hidden
+  entities:
+    - binary_sensor.dome_leak_sensor_sump_sensor
+    - binary_sensor.dome_leak_sensor_washer_sensor
+    - binary_sensor.dome_leak_sensor_kitchen_sensor
