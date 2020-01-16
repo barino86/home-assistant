@@ -1,0 +1,27 @@
+#  - platform: google_travel_time
+#    name: Travel Time Work
+#    api_key: !secret google_api_key
+#    origin: device_tracker.anand_nexus6p
+#    destination: zone.work
+#    options:
+#      units: imperial
+#      mode: driving
+#      departure_time: now
+#  - platform: google_travel_time
+#    name: Travel Time Home
+#    api_key: !secret google_api_key
+#    origin: device_tracker.anand_nexus6p
+#    destination: zone.home
+#    options:
+#      units: imperial
+#      mode: driving
+#      departure_time: now 
+#  - platform: google_travel_time
+#    name: Travel Time Daycare
+#    api_key: !secret google_api_key
+#    origin: device_tracker.anand_nexus6p
+#    destination: zone.daycare
+#    options:
+#      units: imperial
+#      mode: driving
+#      departure_time: now

@@ -1,0 +1,5 @@
+  email: !secret cloudflare_email
+  api_key: !secret cloudflare_api
+  zone: !secret root_domain
+  records:
+    - !secret root_domain

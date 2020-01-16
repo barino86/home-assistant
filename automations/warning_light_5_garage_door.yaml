@@ -1,0 +1,22 @@
+- id: 'magenta_for_garage_open'
+  alias: Warning Light 5 - Magenta for Garage Door Open
+  initial_state: 'on'
+  trigger:
+  - entity_id: binary_sensor.monoprice_garage_door_sensor_sensor
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator5_garage_door_open
+- id: 'off_for_garage_door_closed'
+  alias: Warning Light 5 - Off for Doors Closed
+  initial_state: 'on'
+  trigger:
+  - entity_id: binary_sensor.monoprice_garage_door_sensor_sensor
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator5_garage_door_closed

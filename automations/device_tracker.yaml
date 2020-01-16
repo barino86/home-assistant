@@ -1,0 +1,35 @@
+- id: '1533748881795'
+  alias: Guests Arrival Notification on Kitchen Speaker
+  initial_state: 'on'  
+  trigger:
+  - entity_id: device_tracker.johan
+    platform: state
+    to: home
+  - entity_id: device_tracker.corietha
+    platform: state
+    to: home
+  - entity_id: device_tracker.genevieesiphone
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.kitchen_speaker
+      message: Your guests have arrived
+      volume_level: '0.5'
+    service: tts.google_say
+- alias: New Devices Notification
+  initial_state: 'on'  
+  condition: []
+  id: hass_notify_new_devices
+  trigger:
+    platform: event
+    event_type: device_tracker_new_device
+  action:
+    - service: notify.telegram
+      data_template:
+        message: >
+          New device:
+          {{trigger.event.data.host_name}}
+          ({{trigger.event.data.entity_id}})
+        title: New device

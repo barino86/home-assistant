@@ -1,0 +1,32 @@
+- id: '1576424621134_on'
+  alias: Garage Outlet Christmas Lights On
+  description: Projector Outlet
+  trigger:
+  - event: sunrise
+    offset: +00:30:00
+    platform: sun
+  - entity_id: input_boolean.christmas_mode
+    platform: state
+  condition:
+  - condition: state
+    entity_id: input_boolean.christmas_mode
+    state: 'on'
+  action:
+  - data:
+      entity_id: switch.linear_wo15z1_single_wall_outlet_switch
+    service: switch.turn_off
+- id: '1576424621134_off'
+  alias: Garage Outlet Christmas Lights Off
+  description: Projector Outlet
+  trigger:
+  - event: sunset
+    offset: -00:30:00
+    platform: sun
+  condition:
+  - condition: state
+    entity_id: input_boolean.christmas_mode
+    state: 'on'
+  action:
+  - data:
+      entity_id: switch.linear_wo15z1_single_wall_outlet_switch
+    service: switch.turn_on

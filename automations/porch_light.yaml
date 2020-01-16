@@ -1,0 +1,40 @@
+- id: porch_light_on
+  alias: Porch Light On
+  initial_state: 'on'
+  trigger:
+  - entity_id: binary_sensor.front_door
+    platform: state
+    to: 'on'
+  - event_data:
+      command: /polight_on
+    event_type: telegram_command
+    platform: event
+  condition:
+  - below: '5'
+    condition: numeric_state
+    entity_id: sensor.sun_solar_angle
+  action:
+  - data:
+      entity_id: light.homeseer_hswd200_porch_dimmer_level
+    service: light.turn_on
+- id: porch_light_off
+  alias: Porch Light Off
+  initial_state: 'on'
+  trigger:
+  - entity_id: binary_sensor.front_door
+    for: '00:05:00'
+    from: 'on'
+    platform: state
+    to: 'off'
+  - event_data:
+      command: /polight_off
+    event_type: telegram_command
+    platform: event
+  condition:
+  - condition: state
+    entity_id: input_boolean.persistent_lights
+    state: 'off'
+  action:
+  - data:
+      entity_id: light.homeseer_hswd200_porch_dimmer_level
+    service: light.turn_off

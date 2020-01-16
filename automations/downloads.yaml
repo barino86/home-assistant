@@ -1,0 +1,126 @@
+- id: '1553191569141'
+  alias: Torrent Completed Notification
+  initial_state: 'on'  
+  trigger:
+  - event_data: {}
+    event_type: transmission_downloaded_torrent
+    platform: event
+  condition: []
+  action:
+    service: notify.telegram
+    data:
+      message: "Torrent completed"
+- id: '1541596189832'
+  alias: Transmission Seeding Notification
+  initial_state: 'on'  
+  trigger:
+  - entity_id: sensor.transmission_vpn_status
+    for: '00:10:00'
+    platform: state
+    to: Seeding
+  condition: []
+  action:
+  - data:
+      message: Transmission is seeding.
+    service: notify.telegram
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.catchall_warning
+- id: download_status_on
+  alias: Download Status On
+  initial_state: 'on'  
+  trigger:
+  - above: '2'
+    entity_id: sensor.transmission_vpn_down_speed
+    platform: numeric_state
+  - above: '2'
+    entity_id: sensor.sabnzbd_speed
+    platform: numeric_state
+  - entity_id: sensor.transmission_vpn_status
+    for: '00:10:00'
+    platform: state
+    to: Seeding
+  - above: '2000'
+    entity_id: sensor.qbittorrent_down_speed
+    platform: numeric_state
+  - entity_id: sensor.qbittorrent_status
+    platform: state
+    to: Seeding
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.download_status
+    service: input_boolean.turn_on
+- id: download_status_off
+  alias: Download Status Off
+  initial_state: 'on'  
+  trigger:
+  - entity_id: sensor.sabnzbd_status
+    for: '00:10:00'
+    platform: state
+    to: Idle
+  - entity_id: sensor.transmission_vpn_status
+    for: '00:10:00'
+    platform: state
+    to: idle
+  - entity_id: sensor.qbittorrent_status
+    for: '00:10:00'
+    platform: state
+    to: idle
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.download_status
+    service: input_boolean.turn_off
+- id: '1533303799335'
+  alias: Downloading Pause while Streaming
+  trigger:
+  - above: '0'
+    entity_id: sensor.zplex
+    platform: numeric_state
+  - above: '0'
+    entity_id: sensor.tautulli
+    platform: numeric_state
+  condition: []
+  action:
+  - service: sabnzbd.pause
+  - service: switch.turn_on
+    entity_id: switch.transmission_vpn
+- id: '1533303924256'
+  alias: Downloading Resume while No Streaming
+  initial_state: 'on'  
+  trigger:
+  - below: '1'
+    entity_id: sensor.zplex
+    platform: numeric_state
+  - below: '1'
+    entity_id: sensor.tautulli
+    platform: numeric_state
+  condition: []
+  action:
+  - service: sabnzbd.resume
+  - service: switch.turn_off
+    entity_id: switch.transmission_vpn
+- id: '1555081806597_on'
+  alias: Transmission Alternate Speed On
+  initial_state: 'on'  
+  trigger:
+  - entity_id: group.family_phones
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      entity_id: switch.transmission_vpn
+    service: switch.turn_on
+- id: '1555081806597_off'
+  alias: Transmission Alternate Speed Off
+  initial_state: 'on'  
+  trigger:
+  - entity_id: group.family_phones
+    platform: state
+    to: not_home
+  condition: []
+  action:
+  - data:
+      entity_id: switch.transmission_vpn
+    service: switch.turn_off

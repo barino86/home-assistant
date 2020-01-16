@@ -1,0 +1,38 @@
+- id: '1522169558241_zoneminder_satus'
+  initial_state: 'on'
+  alias: Zoneminder Status
+  trigger:
+  - entity_id: binary_sensor.192_168_1_90_8154
+    platform: state
+    from: 'on'
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} is {{ trigger.to_state.state }}"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.catchall_warning
+- id: 'indoor_camera_start_recording'
+  initial_state: 'on'
+  alias: ZoneMinder Start Recording on Indoor Camera
+  trigger:
+  - event_data: {}
+    event_type: abode_alarm
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: switch.indoor_camera_state
+    service: switch.turn_on
+- id: 'indoor_camera_stop_recording'
+  initial_state: 'on'
+  alias: ZoneMinder Stop Recording on Indoor Camera
+  trigger:
+  - event_data: {}
+    event_type: abode_alarm_end
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: switch.indoor_camera_state
+    service: switch.turn_off

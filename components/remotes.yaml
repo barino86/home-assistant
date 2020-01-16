@@ -1,0 +1,6 @@
+  - platform: harmony
+    name: Living Room Harmony
+    host: !secret living_room_harmony_ip
+  - platform: harmony
+    name: Basement Harmony
+    host: !secret basement_harmony_ip

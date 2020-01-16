@@ -1,0 +1,4 @@
+  - platform: xiaomi_miio
+    host: !secret roborock_s6_ip
+    token: !secret roborock_s6_token
+    name: Rocky

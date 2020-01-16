@@ -1,0 +1,12 @@
+#  - platform: workday
+#    country: US
+  - platform: ping
+    name: SHB Ping
+    host: !secret shb_domain
+    scan_interval: 10
+  - platform: digital_ocean
+    droplets:
+      - !secret digitalocean_1
+      - !secret digitalocean_2
+  - platform: apcupsd
+    name: UPS Online Status

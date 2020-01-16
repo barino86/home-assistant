@@ -1,0 +1,23 @@
+#  - name: pushbullet
+#    platform: pushbullet
+#    api_key: !secret pushbullet_api_key
+#  - platform: clicksend
+#    name: clicksend_sms
+#    username: !secret clicksend_username
+#    api_key: !secret clicksend_api_key
+#    recipient: !secret clicksend_recipient
+  - name: smtp
+    platform: smtp
+    server: !secret smtp_server
+    port: !secret smtp_port
+    timeout: 15
+    sender: !secret smtp_sender
+    encryption: starttls
+    username: !secret smtp_username
+    password: !secret smtp_password
+    recipient:
+      - !secret smtp_recipient
+    sender_name: zHassio
+  - name: telegram
+    platform: telegram
+    chat_id: !secret telegram_chat_id

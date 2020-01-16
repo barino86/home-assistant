@@ -1,0 +1,5 @@
+  - platform: crimereports
+    name: crimes home
+    radius: 10000
+    latitude: !secret home_latitude
+    longitude: !secret home_longitude

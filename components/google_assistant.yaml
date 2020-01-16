@@ -1,0 +1,52 @@
+  project_id: !secret ga_project_id
+  api_key: !secret ga_api_key
+  expose_by_default: false
+  entity_config:
+    input_boolean.living_room_skip_ad:
+      name: "Skip Ad"
+      room: 'Living Room'
+      expose: true
+    input_boolean.living_room_tv_caption:
+      name: "TV Caption"
+      room: 'Living Room'
+      expose: true
+    input_boolean.persistent_lights:
+      name: "Persistent Lights"
+      room: 'Home Assistant'
+      expose: true
+    input_boolean.reload_automation: 
+      name: "Reload Automation"
+      room: 'Home Assistant'
+      expose: true
+    input_boolean.restart_home_assistant: 
+      name: "Restart Home Assistant"
+      room: 'Home Assistant'
+      expose: true
+    light.homeseer_hswd200_porch_dimmer_level: 
+      name: "Porch Light"
+      room: 'Porch'
+      expose: true
+    light.homeseer_hswd200_patio_dimmer_level:
+      name: "Patio Light"
+      room: 'Patio'
+      expose: true
+    light.homeseer_hswd200_garage_dimmer_level:
+      name: "Garage Light"
+      room: 'Garage'
+      expose: true
+    light.homeseer_hswd200_bedroom_dimmer_level:
+      name: "Bedroom Light"
+      room: 'Master Bedroom'
+      expose: true
+    switch.dome_onoff_plugin_switch_switch:
+      name: "Subwoofer"
+      room: 'Theater'
+      expose: true
+    switch.linear_wo15z1_single_wall_outlet_switch:
+      name: "Dehumidifier"
+      room: 'Basement'
+      expose: true
+    switch.dome_water_shutoff_valve_switch:
+      name: "Water Supply"
+      room: 'Basement'
+      expose: true

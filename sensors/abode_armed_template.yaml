@@ -1,0 +1,5 @@
+  - platform: template
+    sensors:
+      abode_armed:
+        entity_id: alarm_control_panel.abode_alarm
+        value_template: '{% if states("alarm_control_panel.abode_alarm") != "disarmed" %}true{% else %}false{% endif %}'

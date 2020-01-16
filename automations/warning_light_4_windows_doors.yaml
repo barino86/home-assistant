@@ -1,0 +1,36 @@
+- id: 'white_for_windows_open'
+  alias: Warning Light 4 - White for Windows Open
+  initial_state: 'on'
+  trigger:
+  - entity_id: group.security_windows
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator4_window_open
+- id: 'blue_for_doors_open'
+  alias: Warning Light 4 - Blue for Doors Open
+  initial_state: 'on'
+  trigger:
+  - entity_id: group.security_doors
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator4_door_open
+- id: 'off_for_windows_doors_closed'
+  alias: Warning Light 4 - Off for Windows Doors Closed
+  initial_state: 'on'
+  trigger:
+  - entity_id: group.security_doors
+    platform: state
+    to: 'off'
+  - entity_id: group.security_windows
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator4_windowdoor_closed

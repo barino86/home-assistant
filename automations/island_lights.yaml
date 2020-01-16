@@ -1,0 +1,23 @@
+- id: island_lights_on_during_entry
+  alias: Island Lights On during Entry
+  initial_state: 'on'  
+  trigger:
+  - entity_id: group.security_doors
+    from: 'off'
+    platform: state
+    to: 'on'
+  - entity_id: sensor.abode_armed
+    from: 'true'
+    platform: state
+    to: 'false'
+  condition:
+  - condition: state
+    entity_id: group.ecobee_occupancy_sensors
+    state: 'off'
+  - below: '10'
+    condition: numeric_state
+    entity_id: sensor.sun_solar_angle
+  action:
+  - data:
+      entity_id: group.lights_1stfloor
+    service: homeassistant.turn_on

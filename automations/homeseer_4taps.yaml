@@ -1,0 +1,28 @@
+- id: homeseer_4tap_on
+  alias: HomeSeer 4 Tap On - Abode Home
+  initial_state: 'on'  
+  trigger:
+  - event_data:
+      scene_data: 7980
+      scene_id: 1
+    event_type: zwave.scene_activated
+    platform: event
+  action:
+  - data:
+      entity_id: alarm_control_panel.abode_alarm
+    service: alarm_control_panel.alarm_arm_home
+- id: homeseer_4tap_off
+  alias: HomeSeer 4 Tap Off
+  initial_state: 'on'  
+  trigger:
+  - event_data:
+      scene_data: 7980
+      scene_id: 2
+    event_type: zwave.scene_activated
+    platform: event
+  action:
+  - service: notify.telegram
+    data_template:
+      message: 4 Taps on {{"light." + trigger.event.data.entity_id.split(".")[1] +
+        "_level" }}
+      title: HomeSeer 4 Taps Off

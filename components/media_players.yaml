@@ -1,0 +1,11 @@
+  # Use the Python ADB implementation without authentication
+  - platform: androidtv
+    name: Bedroom FireTV
+    host: !secret bedroom_firetv_ip
+    device_class: firetv
+    get_sources:  true
+  - platform: androidtv
+    name: Basement ShieldTV
+    host: !secret basement_shieldtv_ip
+    device_class: androidtv
+    get_sources:  true

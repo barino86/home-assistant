@@ -1,0 +1,10 @@
+###### MOSQUITTO MQTT on docker #####
+  broker: !secret mqtt_broker_host
+  protocol: 3.1
+  port: !secret mqtt_broker_port
+  keepalive: 60
+  client_id: zhassio
+  username: !secret mqtt_hass_username
+  password: !secret mqtt_hass_password
+  discovery: true
+  discovery_prefix: homeassistant

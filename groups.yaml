@@ -28,25 +28,15 @@ family_phones:
   name: Family Phones
   control: hidden
   entities: 
-    - device_tracker.nexus_5x
-    - device_tracker.pixel_3
+    - device_tracker.pixel_3_v
+    - device_tracker.pixel_3_a
 
 family_location:
   name: Family Location
   control: hidden
   entities: 
-    - device_tracker.anand_pixel3
-    - device_tracker.veena_nexus5x
-
-guest_phones:
-  name: Guest Phones
-  control: hidden
-  entities: 
-    - device_tracker.johan
-    - device_tracker.corietha
-    - device_tracker.genevieesiphone
-    - device_tracker.dad
-    - device_tracker.mom
+    - device_tracker.a_pixel3
+    - device_tracker.v_pizel3
 
 lights_outdoor:
   name: Lights Group Outdoor

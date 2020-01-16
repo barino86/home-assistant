@@ -1,0 +1,179 @@
+#   {{ states.climate.main_floor.attributes.fan }}
+#   {{ states.climate.main_floor.state }}
+- id: '1537196841648'
+  alias: Temperature Reduction during Nights with High Humidity
+  initial_state: 'on'  
+  trigger:
+#  - above: 48
+#    entity_id: sensor.main_floor_humidity
+#    for: '00:10:00'
+#    platform: numeric_state
+  - minutes: '/10'
+    platform: time_pattern
+    seconds: 0
+  condition:
+  - condition: template
+    value_template: '{{ states.climate.main_floor.attributes.operation_mode == "cool"
+      }}'
+  - condition: template
+    value_template: '{{ states.climate.main_floor.attributes.temperature > 72 }}'
+  - above: 48
+    condition: numeric_state
+    entity_id: sensor.main_floor_humidity
+  - after: '22:00:00'
+    before: '06:00:00'
+    condition: time
+  action:
+  - data:
+      message: Humidity is now {{ states.sensor.main_floor_humidity.state }} (> 48).
+        Setting AC to {{ states.climate.main_floor.attributes.temperature -1 | int
+        }}.
+    service: notify.telegram
+  - data_template:
+      entity_id: climate.main_floor
+      temperature: '{{ states.climate.main_floor.attributes.temperature - 1 | int  }}'
+    service: climate.set_temperature
+- id: '1537203906262'
+  alias: 'Temperature Reset during Nights '
+  initial_state: 'on'  
+  trigger:
+  - below: 48
+    for: '00:10:00'
+    entity_id: sensor.main_floor_humidity
+    platform: numeric_state
+  condition:
+  - condition: template
+    value_template: '{{ states.climate.main_floor.attributes.operation_mode == "cool"
+      }}'
+  - after: '22:00:00'
+    before: '06:00:00'
+    condition: time
+  action:
+  - data:
+      entity_id: climate.main_floor
+      resume_all: 'true'
+    service: climate.ecobee_resume_program
+  - delay:
+      minutes: 1
+  - data:
+      message: Humidity is now {{ states.sensor.main_floor_humidity.state }} (< 48).
+        Resuming Ecobee schedule. AC set at {{ states.climate.main_floor.attributes.temperature
+        }}.
+    service: notify.telegram
+- id: '1555004488813_humidity'
+  alias: House Humidity Notification
+  initial_state: 'on'  
+  trigger:
+  - above: '55'
+    for: '00:10:00'
+    entity_id: sensor.main_floor_humidity
+    platform: numeric_state
+  - below: '20'
+    for: '00:10:00'
+    entity_id: sensor.main_floor_humidity
+    platform: numeric_state
+  condition: []
+  action:
+#  - service: notify.telegram
+#    data: 
+#      message: "Uncomfortable humidity reported."
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} is outside comfort zone - ({{ trigger.to_state.state }})."
+- id: '1555004488813_temperature'
+  alias: House Temperature Notification
+  initial_state: 'on'  
+  trigger:
+  - below: '55'
+    for: '00:10:00'
+    entity_id: sensor.basement_temperature
+    platform: numeric_state
+  - below: '59'
+    for: '00:10:00'
+    entity_id: sensor.main_floor_temperature
+    platform: numeric_state
+  - below: '59'
+    for: '00:10:00'
+    entity_id: sensor.master_bedroom_temperature
+    platform: numeric_state
+  - below: '59'
+    for: '00:10:00'
+    entity_id: sensor.niahs_room_temperature
+    platform: numeric_state
+  - below: '59'
+    for: '00:10:00'
+    entity_id: sensor.niys_room_temperature
+    platform: numeric_state
+  - below: '59'
+    for: '00:10:00'
+    entity_id: sensor.office_temperature
+    platform: numeric_state
+  - above: '79'
+    for: '00:10:00'
+    entity_id: sensor.main_floor_temperature
+    platform: numeric_state
+  - above: '79'
+    for: '00:10:00'
+    entity_id: sensor.master_bedroom_temperature
+    platform: numeric_state
+  - above: '79'
+    for: '00:10:00'
+    entity_id: sensor.niahs_room_temperature
+    platform: numeric_state
+  - above: '79'
+    for: '00:10:00'
+    entity_id: sensor.nivys_room_temperature
+    platform: numeric_state
+  - above: '79'
+    for: '00:10:00'
+    entity_id: sensor.office_temperature
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: group.ecobee_occupancy_sensors
+    state: 'on'
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} is outside comfort zone - ({{ trigger.to_state.state }})."
+#  - service: notify.telegram
+#    data: 
+#      message: "Uncomfortable temperature reported."
+#  - service: input_boolean.turn_on
+#    entity_id: input_boolean.catchall_warning
+- id: 'ecobee_set_to_cool'
+  alias: Ecobee Cool When Temperature Above 74
+  initial_state: 'on'  
+  trigger:
+  - above: '74'
+    entity_id: sensor.main_floor_temperature
+    platform: numeric_state
+  - platform: template
+    value_template: '{{ states.climate.main_floor.attributes.current_temperature > 74 }}'
+  condition:
+  - condition: template
+    value_template: '{{ states.climate.main_floor.attributes.operation_mode == "heat"
+      }}'
+  action:
+  - data:
+      entity_id: climate.main_floor
+      operation_mode: cool
+    service: climate.set_operation_mode
+- id: 'ecobee_set_to_heat'
+  alias: Ecobee Heat When Temperature Below 69
+  initial_state: 'on'  
+  trigger:
+  - below: '69'
+    entity_id: sensor.main_floor_temperature
+    platform: numeric_state
+  - platform: template
+    value_template: '{{ states.climate.main_floor.attributes.current_temperature < 69 }}'
+  condition:
+  - condition: template
+    value_template: '{{ states.climate.main_floor.attributes.operation_mode == "cool"
+      }}'
+  action:
+  - data:
+      entity_id: climate.main_floor
+      operation_mode: heat
+    service: climate.set_operation_mode

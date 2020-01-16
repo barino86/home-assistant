@@ -1,0 +1,30 @@
+  purge_keep_days: 7
+  purge_interval: 1 #default
+  db_url: !secret mariadb_url
+  include:
+    domains:
+#      - alarm_control_panel
+      - sensor
+#      - binary_sensor
+      - switch
+      - media_player
+      - light
+      - automation
+#      - climate
+    entities:
+      - climate.main_floor
+#  exclude:
+#    domains:
+#      - updater
+#      - sun
+#      - group
+#      - mqtt
+#      - script
+#      - device_tracker
+#      - input_select
+#      - input_boolean
+#      - history_graph
+#    entities:
+#      - sun.sun # Don't record sun data
+#      - sensor.last_boot # Comes from 'systemmonitor' sensor platform
+#      - sensor.date

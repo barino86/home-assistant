@@ -1,0 +1,4 @@
+  - platform: dnsip
+    name: wan ip
+    hostname: !secret wanip_hostname
+    resolver: 1.1.1.1

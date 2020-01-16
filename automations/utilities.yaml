@@ -1,0 +1,69 @@
+- action:
+  - data:
+      message: Main water is shut off.
+    service: notify.telegram
+  alias: Water Shutoff Notification
+  condition:
+  - condition: state
+    entity_id: switch.dome_water_shutoff_valve_switch
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'off'
+  id: '1521921259304'
+  trigger:
+  - entity_id: switch.dome_water_shutoff_valve_switch
+    platform: state
+    to: 'off'
+  - minutes: '/5'
+    platform: time_pattern
+    seconds: 0
+  initial_state: 'on'
+- id: '1560393274438ff'
+  alias: Electricity Off Notification from UPS
+  trigger:
+  - below: '1'
+    entity_id: sensor.ups_input_voltage
+    platform: numeric_state
+  - below: '1'
+    entity_id: sensor.cyberpower_cp1500pfclcd_input_voltage
+    platform: numeric_state
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "Power off detected. UPS is now running. {{ trigger.to_state.attributes.friendly_name }} is {{ trigger.to_state.state }}."
+- id: '1560393274438on'
+  alias: Electricity Back On Notification from UPS
+  trigger:
+  - above: '1'
+    entity_id: sensor.ups_input_voltage
+    platform: numeric_state
+  - above: '1'
+    entity_id: sensor.cyberpower_cp1500pfclcd_input_voltage
+    platform: numeric_state
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "Power back on. UPS has been turned off. {{ trigger.to_state.attributes.friendly_name }} is {{ trigger.to_state.state }}."
+- id: '1560393584585'
+  alias: UPS Shutdown Notification
+  trigger:
+  - below: '20'
+    entity_id: sensor.ups_battery
+    platform: numeric_state
+  - below: '20'
+    entity_id: sensor.cyberpower_cp1500pfclcd_battery_charge
+    platform: numeric_state
+  condition:
+  - below: '1'
+    condition: numeric_state
+    entity_id: sensor.cyberpower_cp1500pfclcd_input_voltage
+  - below: '1'
+    condition: numeric_state
+    entity_id: sensor.ups_input_voltage
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} battery is at {{ trigger.to_state.state }}. Shutdown will begin shortly."

@@ -1,0 +1,186 @@
+#- id: warning_light1_yellow
+#  alias: Warning Light 1 - Yellow for Catch All Warning
+#  trigger:
+#  - entity_id: input_boolean.catchall_warning
+#    platform: state
+#    to: 'on'
+#  condition: []
+#  action:
+#  - service: script.turn_on
+#    entity_id: script.indicator1_catchall_warning_on
+#- id: warning_light1_off
+#  alias: Warning Light 1 - Off for Catch All Warning Off
+#  trigger:
+#  - entity_id: input_boolean.catchall_warning
+#    platform: state
+#    to: 'off'  
+#  condition: []
+#  action:
+#  - service: script.turn_on
+#    entity_id: script.indicator1_catchall_warning_off
+- id: wl1_garage_light_on
+  alias: Warning Light 1 - Garage Light On
+  initial_state: 'on'
+  trigger:
+  - entity_id: light.homeseer_hswd200_garage_dimmer_level
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.zwave_network_status
+    state: 'on'
+  action:
+  - data:
+      node_id: 21
+      parameter: 21
+      value: White
+    service: zwave.set_config_parameter
+- id: wl1_garage_light_off
+  alias: Warning Light 1 - Garage Light Off
+  initial_state: 'on'
+  trigger:
+  - entity_id: light.homeseer_hswd200_garage_dimmer_level
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: input_boolean.zwave_network_status
+    state: 'on'
+  action:
+  - data:
+      node_id: 21
+      parameter: 21
+      value: 'Off'
+    service: zwave.set_config_parameter
+  - service: input_boolean.toggle
+    entity_id: input_boolean.reload_automation  
+- id: wl1_patio_light_on
+  alias: Warning Light 1 - Patio Light On
+  initial_state: 'on'
+  trigger:
+  - entity_id: light.homeseer_hswd200_patio_dimmer_level
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.zwave_network_status
+    state: 'on'
+  action:
+  - data:
+      node_id: 23
+      parameter: 21
+      value: White
+    service: zwave.set_config_parameter
+- id: wl1_patio_light_off
+  alias: Warning Light 1 - Patio Light Off
+  initial_state: 'on'
+  trigger:
+  - entity_id: light.homeseer_hswd200_patio_dimmer_level
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: input_boolean.zwave_network_status
+    state: 'on'
+  action:
+  - data:
+      node_id: 23
+      parameter: 21
+      value: 'Off'
+    service: zwave.set_config_parameter
+  - service: input_boolean.toggle
+    entity_id: input_boolean.reload_automation  
+- id: wl1_porch_light_on
+  alias: Warning Light 1 - Porch Light On
+  initial_state: 'on'
+  trigger:
+  - entity_id: light.homeseer_hswd200_porch_dimmer_level
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.zwave_network_status
+    state: 'on'
+  action:
+  - data:
+      node_id: 22
+      parameter: 21
+      value: White
+    service: zwave.set_config_parameter
+- id: wl1_porch_light_off
+  alias: Warning Light 1 - Porch Light Off
+  initial_state: 'on'
+  trigger:
+  - entity_id: light.homeseer_hswd200_porch_dimmer_level
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: input_boolean.zwave_network_status
+    state: 'on'
+  action:
+  - data:
+      node_id: 22
+      parameter: 21
+      value: 'Off'
+    service: zwave.set_config_parameter
+  - service: input_boolean.toggle
+    entity_id: input_boolean.reload_automation  
+- id: wl1_bedroom_light_on
+  alias: Warning Light 1 - Bedroom Light On
+  initial_state: 'on'
+  trigger:
+  - entity_id: light.homeseer_hswd200_bedroom_dimmer_level
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.zwave_network_status
+    state: 'on'
+  action:
+  - data:
+      node_id: 24
+      parameter: 21
+      value: White
+    service: zwave.set_config_parameter
+- id: wl1_bedroom_light_off
+  alias: Warning Light 1 - Bedroom Light Off
+  initial_state: 'on'
+  trigger:
+  - entity_id: light.homeseer_hswd200_bedroom_dimmer_level
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: input_boolean.zwave_network_status
+    state: 'on'
+  action:
+  - data:
+      node_id: 24
+      parameter: 21
+      value: 'Off'
+    service: zwave.set_config_parameter
+  - service: input_boolean.toggle
+    entity_id: input_boolean.reload_automation  
+- id: 'water_leak_on'
+  alias: Warning Light 1 - Blinking Cyan for Leak Detected On
+  initial_state: 'on'
+  trigger:
+  - entity_id: group.leak_sensors_status
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - entity_id: script.indicator1_water_leak_on
+    service: script.turn_on
+- id: 'water_leak_off'
+  alias: Warning Light 1 - Off for Leak Detected Off
+  initial_state: 'on'
+  trigger:
+  - entity_id: group.leak_sensors_status
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - entity_id: script.indicator1_water_leak_off
+    service: script.turn_on

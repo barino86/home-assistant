@@ -1,0 +1,66 @@
+  - platform: mqtt
+    name: "Pixel 3 Battery"
+    state_topic: "pixel3/sensor/android_anand_pixel3_battery/state"
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.level }}"
+    json_attributes:
+      - voltage
+      - temperature
+      - status
+      - power
+      - health
+      - technology
+  - platform: mqtt
+    name: "Pixel 3 Wifi"
+    state_topic: "pixel3/sensor/android_anand_pixel3_wifi/state"
+    value_template: "{{ value_json.status }}"
+    json_attributes:
+      - ssid
+      - link_speed
+      - bssid
+      - rssi
+      - ip
+      - signal
+      - mac
+  - platform: mqtt
+    name: "Pixel 3 Call State"
+    state_topic: "pixel3/sensor/android_anand_pixel3_callstate/state"
+    value_template: "{{ value_json.state }}"
+    json_attributes:
+      - icon
+  - platform: mqtt
+    name: "Pixel 3 Light Level"
+    state_topic: "pixel3/sensor/android_anand_pixel3_light/state"
+    unit_of_measurement: 'lx'
+    value_template: "{{ value_json.value }}"
+    json_attributes:
+      - sensor_name
+      - vendor
+      - version
+      - power
+      - resolution
+      - max_range
+  - platform: mqtt
+    name: "Pixel 3 Step Counter"
+    state_topic: "pixel3/sensor/android_anand_pixel3_steps/state"
+    unit_of_measurement: 'steps'
+    value_template: "{{ value_json.steps }}"
+    json_attributes:
+      - sensor_name
+      - vendor
+      - version
+      - power
+      - resolution
+      - max_range
+  - platform: mqtt
+    name: "Pixel 3 Pressure"
+    state_topic: "pixel3/sensor/android_anand_pixel3_pressure/state"
+    unit_of_measurement: 'hPa'
+    value_template: "{{ value_json.value }}"
+    json_attributes:
+      - sensor_name
+      - vendor
+      - version
+      - power
+      - resolution
+      - max_range

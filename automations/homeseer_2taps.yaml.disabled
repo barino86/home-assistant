@@ -1,0 +1,48 @@
+- id: homeseer_2tap_on
+  alias: HomeSeer 2 Tap On
+  initial_state: 'on'  
+  trigger:
+  - event_data:
+      scene_data: 7860
+      scene_id: 1
+    event_type: zwave.scene_activated
+    platform: event
+  action:
+  - service: notify.telegram
+    data_template:
+      message: 2 Taps on {{"light." + trigger.event.data.entity_id.split(".")[1] +
+        "_level" }}
+      title: HomeSeer 2 Taps On
+  - service: light.turn_on
+    data_template:
+      entity_id: '{{"light." + trigger.event.data.entity_id.split(".")[1] + "_level"
+        }}'
+      brightness: 255
+      transition: 0
+  - data:
+      entity_id: input_boolean.persistent_lights
+    service: input_boolean.turn_on
+- id: homeseer_2tap_off
+  alias: HomeSeer 2 Tap Off
+  initial_state: 'on'  
+  trigger:
+  - event_data:
+      scene_data: 7860
+      scene_id: 2
+    event_type: zwave.scene_activated
+    platform: event
+  action:
+  - service: notify.telegram
+    data_template:
+      message: 2 Taps off {{"light." + trigger.event.data.entity_id.split(".")[1]
+        + "_level" }}
+      title: HomeSeer 2 Taps Off
+  - service: light.turn_off
+    data_template:
+      entity_id: '{{"light." + trigger.event.data.entity_id.split(".")[1] + "_level"
+        }}'
+      brightness: 0
+      transition: 0
+  - data:
+      entity_id: input_boolean.persistent_lights
+    service: input_boolean.turn_off

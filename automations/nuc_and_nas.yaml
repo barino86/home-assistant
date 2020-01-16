@@ -1,0 +1,50 @@
+#- id: '1555004488813'
+#  alias: CPU Load Notification
+#  trigger:
+#  - above: '300'
+#    entity_id: sensor.cpu_load_15_min
+#    platform: numeric_state
+#  - above: '6.0'
+#    entity_id: sensor.load_15m
+#    platform: numeric_state
+#  condition: []
+#  action:
+#  - service: notify.telegram
+#    data_template:
+#      message: "{{ trigger.to_state.attributes.friendly_name }} is above limit ({{ trigger.to_state.state }})."
+#  - service: input_boolean.turn_on
+#    entity_id: input_boolean.catchall_warning
+- id: '1555004488813_lan_speed'
+  alias: LAN Speed Notification
+  initial_state: 'on'
+  trigger:
+  - below: '30'
+    entity_id: sensor.nas_download_speed
+    platform: numeric_state
+  - below: '30'
+    entity_id: sensor.nas_upload_speed
+    platform: numeric_state
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} is below 30 MB/s ({{ trigger.to_state.state }})."
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.catchall_warning
+- id: '1555004488813_disk_usage'
+  alias: Disk Usage Notification
+  initial_state: 'on'
+  trigger:
+  - above: '90'
+    entity_id: sensor.disk_use_percent
+    platform: numeric_state
+  - above: '90'
+    entity_id: sensor.volume_used_volume_1
+    platform: numeric_state
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} is above 90% ({{ trigger.to_state.state }})."
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.catchall_warning

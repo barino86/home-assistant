@@ -1,0 +1,39 @@
+- id: '1537196841648_ecobee_heat'
+  alias: Warning Light 6 - Ecobee Heat
+  initial_state: 'on'
+  trigger:
+    platform: template
+    value_template: '{{ states.climate.main_floor.state == "heat" }}'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator6_ecobee_heat
+- id: '1537196841648_ecobee_cool'
+  alias: Warning Light 6 - Ecobee Cool
+  initial_state: 'on'
+  trigger:
+    platform: template
+    value_template: '{{ states.climate.main_floor.state == "cool" }}'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator6_ecobee_cool
+- id: '1537196841648_ecobee_off'
+  alias: Warning Light 6 - Ecobee Off
+  initial_state: 'on'
+  trigger:
+    platform: template
+    value_template: '{{ states.climate.main_floor.state == "off" }}'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator6_ecobee_off
+- id: '1537196841648_ecobee_auto'
+  alias: Warning Light 6 - Ecobee Auto
+  trigger:
+    platform: template
+    value_template: '{{ states.climate.main_floor.state == "auto" }}'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator6_ecobee_auto

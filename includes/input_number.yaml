@@ -1,0 +1,13 @@
+#slider1:
+#  name: Example Slider
+#  initial: 30
+#  min: -20
+#  max: 35
+#  step: 1
+#box1:
+#  name: Example Numeric Input Box
+#  initial: 30
+#  min: -20
+#  max: 35
+#  step: 1
+#  mode: box

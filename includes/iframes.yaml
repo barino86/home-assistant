@@ -1,0 +1,16 @@
+  mdiindex:
+    title: MDI Icon Index
+    icon: mdi:vector-square
+    url: https://cdn.rawgit.com/james-fry/home-assistant-mdi/efd95d7a/home-assistant-mdi.html
+  mdisearch:
+    title: MDI Search
+    icon: mdi:image-search-outline
+    url: https://materialdesignicons.com/
+  releases:
+    title: Release Notes
+    icon: mdi:cube-send
+    url: https://www.home-assistant.io/latest-release-notes/
+  components:
+    title: Component Search
+    icon: mdi:dns
+    url: https://www.home-assistant.io/components/

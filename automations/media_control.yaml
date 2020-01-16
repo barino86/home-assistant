@@ -1,0 +1,102 @@
+- id: '1556652317471'
+  alias: TCL Roku TV Captions On for Roku
+  initial_state: 'on'
+  trigger:
+  - entity_id: switch.watch_roku_harmony_activity
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: Living Room Roku on. Turning on captions.
+    service: notify.telegram
+  - data:
+      entity_id: input_boolean.living_room_tv_caption
+    service: input_boolean.turn_on
+  - data:
+      command:
+      - ClosedCaption
+      - DirectionRight
+      - OK
+      delay_secs: 1
+      device: 55520414
+      entity_id: remote.living_room_harmony
+    service: remote.send_command
+- id: 'tcl_watch_tv_caption_off'
+  alias: TCL Roku TV Captions Off for TV
+  initial_state: 'on'
+  trigger:
+  - entity_id: switch.watch_tv_harmony_activity
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: Living Room Watch TV on. Turning off captions.
+    service: notify.telegram
+  - data:
+      entity_id: input_boolean.living_room_tv_caption
+    service: input_boolean.turn_off
+  - data:
+      command:
+      - ClosedCaption
+      - DirectionLeft
+      - OK
+      delay_secs: 1
+      device: 55520414
+      entity_id: remote.living_room_harmony
+    service: remote.send_command
+- id: living_room_remote_skip_ad
+  alias: Living Room Remote Skip Ad
+  initial_state: 'on'
+  trigger:
+  - entity_id: input_boolean.living_room_skip_ad
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: Skipping ad on Living Room TV.
+    service: notify.telegram
+  - data:
+      command:
+      - OK
+      delay_secs: 0.6
+      device: 55520414
+      entity_id: remote.living_room_harmony
+    service: remote.send_command
+  - delay: '00:00:01'
+  - data:
+      entity_id: input_boolean.living_room_skip_ad
+    service: input_boolean.turn_off
+- id: '1542550714487'
+  alias: Subwoofer On When Denon AVR Turns On
+  initial_state: 'on'
+  trigger:
+  - entity_id: device_tracker.denon_avr_x3300w
+    platform: state
+    to: home
+  - entity_id: remote.basement_harmony
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.dome_onoff_plugin_switch_switch
+    service: switch.turn_on
+- id: '1542550978349'
+  alias: Subwoofer Off When Denon AVR Turns Off
+  initial_state: 'on'
+  trigger:
+  - entity_id: device_tracker.denon_avr_x3300w
+    platform: state
+    to: not_home
+  - entity_id: remote.basement_harmony
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.dome_onoff_plugin_switch_switch
+    service: switch.turn_off

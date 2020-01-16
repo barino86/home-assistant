@@ -1,0 +1,35 @@
+# Themes
+current_theme:
+  name: 'Current Theme'
+  options:
+    - 'default'
+    - 'oxfordblue'
+    - 'midnight'
+  initial: 'default'
+  icon: 'mdi:palette'
+#a_status:
+#  name: A Status
+#  icon: mdi:human  
+#  options:
+#   - "Home"
+#   - "Work"
+#   - "Away"
+#   - "Sleeping"
+#  initial: "Home"
+#v_status:
+#  name: V Status
+#  icon: mdi:human-female  
+#  options:
+#   - "Home"
+#   - "Work"
+#   - "Away"
+#   - "Sleeping"
+#  initial: "Home"
+#abode_status:
+#  name: Abode Status
+#  icon: mdi:security
+#  options:
+#   - "Home"
+#   - "Disarmed"
+#   - "Away"
+#  initial: "Disarmed"

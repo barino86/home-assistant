@@ -1,0 +1,33 @@
+- id: '1521728481607'
+  alias: Warning Light 7 - Blinking Red for Abode Away
+  initial_state: 'on'
+  trigger:
+  - entity_id: alarm_control_panel.abode_alarm
+    platform: state
+    to: armed_away
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator7_abode_away
+- id: '1521728600663'
+  initial_state: 'on'
+  alias: Warning Light 7 - Red for Abode Home
+  trigger:
+  - entity_id: alarm_control_panel.abode_alarm
+    platform: state
+    to: armed_home
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator7_abode_home
+- id: '1531223082483'
+  alias: Warning Light 7 - Green for Abode Disarmed
+  initial_state: 'on'  
+  trigger:
+  - entity_id: alarm_control_panel.abode_alarm
+    platform: state
+    to: disarmed
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator7_abode_disarmed

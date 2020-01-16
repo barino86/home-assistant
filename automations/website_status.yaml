@@ -1,0 +1,23 @@
+- id: '1522169558241'
+  alias: Digital Ocean Droplet Status
+  initial_state: 'on'
+  trigger:
+  - entity_id: binary_sensor.shb_ping
+    platform: state
+    from: 'on'
+  - entity_id: binary_sensor.khub_ping
+    platform: state
+    from: 'on'
+  - entity_id: binary_sensor.hbd
+    platform: state
+    from: 'on'
+  - entity_id: binary_sensor.shb
+    platform: state
+    from: 'on'
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} is {{ trigger.to_state.state }}"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.catchall_warning

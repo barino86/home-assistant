@@ -1,0 +1,66 @@
+- id: homeseer_5tap_on
+  alias: HomeSeer 5 Tap On - Abode Away
+  initial_state: 'on'  
+  trigger:
+  - event_data:
+      scene_data: 8040
+      scene_id: 1
+    event_type: zwave.scene_activated
+    platform: event
+  action:
+  - data:
+      entity_id: alarm_control_panel.abode_alarm
+    service: alarm_control_panel.alarm_arm_away
+  - data:
+      node_id: 21
+      parameter: 27
+      value: Yellow
+    service: zwave.set_config_parameter
+  - data:
+      node_id: 22
+      parameter: 27
+      value: Yellow
+    service: zwave.set_config_parameter
+  - data:
+      node_id: 23
+      parameter: 27
+      value: Yellow
+    service: zwave.set_config_parameter
+  - data:
+      node_id: 24
+      parameter: 27
+      value: Yellow
+    service: zwave.set_config_parameter
+  - data:
+      node_id: 21
+      parameter: 31
+      value: 64
+    service: zwave.set_config_parameter
+  - data:
+      node_id: 22
+      parameter: 31
+      value: 64
+    service: zwave.set_config_parameter
+  - data:
+      node_id: 23
+      parameter: 31
+      value: 64
+    service: zwave.set_config_parameter
+  - data:
+      node_id: 24
+      parameter: 31
+      value: 64
+    service: zwave.set_config_parameter
+- id: garage_5tap_off
+  alias: HomeSeer 5 Tap Off - Abode Disarm
+  initial_state: 'on'  
+  trigger:
+  - event_data:
+      scene_data: 8040
+      scene_id: 2
+    event_type: zwave.scene_activated
+    platform: event
+  action:
+  - data:
+      entity_id: alarm_control_panel.abode_alarm
+    service: alarm_control_panel.alarm_disarm

@@ -1,0 +1,13 @@
+  - platform: sonarr
+    api_key: !secret sonarr_api_key
+    host: !secret server_local_ip
+    port: !secret sonarr_port
+    ssl: false
+    monitored_conditions:
+      - series
+      - upcoming
+      - wanted
+      - queue
+#      - diskspace
+    days: 7
+    unit: TB

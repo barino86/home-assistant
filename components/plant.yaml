@@ -1,0 +1,16 @@
+  master_bedroom_zzplant:
+    sensors:
+      moisture: sensor.master_zzplant_moisture
+      battery: sensor.master_zzplant_battery
+      temperature: sensor.master_zzplant_temperature
+      conductivity: sensor.master_zzplant_conductivity
+      brightness: sensor.master_zzplant_light_intensity
+    min_moisture: 16
+    max_moisture: 60
+    min_battery: 20
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_temperature: 50
+    max_temperature: 90
+    min_brightness: 600
+    max_brightness: 20000

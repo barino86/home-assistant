@@ -1,0 +1,36 @@
+- id: '1531513168534'
+  alias: Leak Detected Notification Sump Pump
+  initial_state: 'on'  
+  trigger:
+  - entity_id: binary_sensor.dome_leak_sensor_sump_sensor
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: Leak detected in sump pump area.
+    service: notify.telegram
+- id: '1531513248280'
+  alias: Leak Detected Notification Washer
+  initial_state: 'on'  
+  trigger:
+  - entity_id: binary_sensor.dome_leak_sensor_washer_sensor
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: Leak detected in Washer area.
+    service: notify.telegram
+- id: '1531513331218'
+  alias: Leak Detected Notification Kitchen Sink
+  initial_state: 'on'
+  trigger:
+  - entity_id: binary_sensor.dome_leak_sensor_kitchen_sensor
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: Leak detected in Kitchen sink area.
+    service: notify.telegram

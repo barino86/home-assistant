@@ -1,0 +1,66 @@
+  - platform: template
+    sensors:
+      battery_monoprice_garage_door_sensor:
+        value_template: >-
+          {%- if states.zwave.monoprice_garage_door_sensor -%}
+            {{ states.zwave.monoprice_garage_door_sensor.attributes.battery_level }}
+          {%- else -%}
+            n/a
+          {%- endif -%}
+        unit_of_measurement: '%'
+        entity_id: zwave.monoprice_garage_door_sensor
+  - platform: template
+    sensors:
+      battery_dome_motion_detector:
+        value_template: >-
+          {%- if states.zwave.dome_motion_detector -%}
+            {{ states.zwave.dome_motion_detector.attributes.battery_level }}
+          {%- else -%}
+            n/a
+          {%- endif -%}
+        unit_of_measurement: '%'
+        entity_id: zwave.dome_motion_detector
+  - platform: template
+    sensors:
+      battery_dome_leak_sensor_washer:
+        value_template: >-
+          {%- if states.zwave.dome_leak_sensor_washer -%}
+            {{ states.zwave.dome_leak_sensor_washer.attributes.battery_level }}
+          {%- else -%}
+            n/a
+          {%- endif -%}
+        unit_of_measurement: '%'
+        entity_id: zwave.dome_leak_sensor_washer
+  - platform: template
+    sensors:
+      battery_dome_leak_sensor_sump:
+        value_template: >-
+          {%- if states.zwave.dome_leak_sensor_sump -%}
+            {{ states.zwave.dome_leak_sensor_sump.attributes.battery_level }}
+          {%- else -%}
+            n/a
+          {%- endif -%}
+        unit_of_measurement: '%'
+        entity_id: zwave.dome_leak_sensor_sump
+  - platform: template
+    sensors:
+      battery_dome_leak_sensor_kitchen:
+        value_template: >-
+          {%- if states.zwave.dome_leak_sensor_kitchen -%}
+            {{ states.zwave.dome_leak_sensor_kitchen.attributes.battery_level }}
+          {%- else -%}
+            n/a
+          {%- endif -%}
+        unit_of_measurement: '%'
+        entity_id: zwave.dome_leak_sensor_kitchen
+  - platform: template
+    sensors:
+      battery_dome_doorwindow_sensor:
+        value_template: >-
+          {%- if states.zwave.dome_doorwindow_sensor -%}
+            {{ states.zwave.dome_doorwindow_sensor.attributes.battery_level }}
+          {%- else -%}
+            n/a
+          {%- endif -%}
+        unit_of_measurement: '%'
+        entity_id: zwave.dome_doorwindow_sensor

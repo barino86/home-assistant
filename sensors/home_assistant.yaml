@@ -1,0 +1,5 @@
+  - platform: version
+    name: HASS Version
+  - platform: uptime
+    name: HASS Uptime
+    unit_of_measurement: hours

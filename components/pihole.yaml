@@ -1,0 +1,3 @@
+  host: !secret pihole_raspberrypi_host
+  ssl: false
+  verify_ssl: false

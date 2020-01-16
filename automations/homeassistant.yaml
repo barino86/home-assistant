@@ -1,0 +1,144 @@
+- id: hass_started_notification
+  alias: Home Assistant Start Notification
+  initial_state: 'on'  
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      message: Home Assistant started.
+    service: notify.telegram
+  - data:
+      entity_id: switch.transmission_alternate
+    service: switch.turn_off
+- id: hass_stopped_notification
+  alias: Home Assistant Stop Notification
+  initial_state: 'on'  
+  trigger:
+  - event: shutdown
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      message: Home Assistant stopped.
+    service: notify.telegram
+- id: hass_change_current_theme
+  alias: Change Current Theme
+  initial_state: 'on'
+  trigger:
+  - platform: state
+    entity_id: input_select.current_theme
+  - platform: homeassistant
+    event: start
+  action:
+  - service: frontend.set_theme
+    data_template:
+      name: '{{states.input_select.current_theme.state}}'
+- id: hass_catchall_warning_theme_on
+  alias: Home Assistant Catch All Warning Theme On
+  initial_state: 'on'
+  trigger:
+  - entity_id: input_boolean.catchall_warning
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: frontend.set_theme
+    data_template:
+      name: 'oxfordblue'
+- id: hass_catchall_warning_theme_off
+  alias: Home Assistant Catch All Warning Theme Off
+  initial_state: 'on'
+  trigger:
+  - entity_id: input_boolean.catchall_warning
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: frontend.set_theme
+    data_template:
+      name: 'default'
+- id: 'restart_home_assistant_voice'
+  alias: Restart Home Assistant
+  initial_state: 'on'  
+  trigger:
+  - entity_id: input_boolean.restart_home_assistant
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: Restarting home assistant through voice.
+    service: notify.telegram
+  - data:
+      entity_id: input_boolean.restart_home_assistant
+    service: input_boolean.turn_off
+  - service: homeassistant.restart
+- id: 'hass_startup_scripts'
+  alias: Home Assistant Startup Checks and Every 5 min
+  initial_state: 'on'  
+  trigger:
+#  - event: start
+#    platform: homeassistant
+  - event_data: {}
+    event_type: zwave.network_ready
+    platform: event
+  - minutes: '/5'
+    platform: time_pattern
+    seconds: 0
+  - entity_id: input_boolean.reload_automation
+    platform: state
+  condition: []
+  action:
+  - entity_id: script.zwave_network_off
+    service: script.turn_on
+  - entity_id: script.zwave_network_on
+    service: script.turn_on
+  # light 7
+  - entity_id: script.indicator7_abode_away
+    service: script.turn_on
+  - entity_id: script.indicator7_abode_home
+    service: script.turn_on
+  - entity_id: script.indicator7_abode_disarmed
+    service: script.turn_on
+  #light 6
+  - service: script.turn_on
+    entity_id: script.indicator6_ecobee_heat
+  - service: script.turn_on
+    entity_id: script.indicator6_ecobee_cool
+  - service: script.turn_on
+    entity_id: script.indicator6_ecobee_auto
+  - service: script.turn_on
+    entity_id: script.indicator6_ecobee_off
+  # light 5
+  - service: script.turn_on
+    entity_id: script.indicator5_garage_door_open
+  - service: script.turn_on
+    entity_id: script.indicator5_garage_door_closed
+  # light 4
+  - service: script.turn_on
+    entity_id: script.indicator4_window_open
+  - service: script.turn_on
+    entity_id: script.indicator4_door_open
+  - service: script.turn_on
+    entity_id: script.indicator4_windowdoor_closed
+  # light 3
+  - service: script.turn_on
+    entity_id: script.indicator3_weather_warning_off
+  - service: script.turn_on
+    entity_id: script.indicator3_uv_protection_on
+  #light 2
+  - service: script.turn_on
+    entity_id: script.indicator2_downloads_on
+  - service: script.turn_on
+    entity_id: script.indicator2_downloads_off
+  #light 1
+  - service: script.turn_on
+    entity_id: script.indicator1_lights_on
+  - service: script.turn_on
+    entity_id: script.indicator1_lights_off
+  - service: script.turn_on
+    entity_id: script.indicator1_water_leak_on
+  - service: script.turn_on
+    entity_id: script.indicator1_water_leak_off

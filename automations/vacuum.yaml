@@ -1,0 +1,15 @@
+- id: '1578878887343'
+  alias: Vacuum State Notifications
+  description: ''
+  trigger:
+  - entity_id: vacuum.rocky
+    platform: state
+#    from: ''
+#    for: "00:01:00"
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "Rocky is now {{ states.vacuum.rocky.state }}."

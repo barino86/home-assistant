@@ -1,0 +1,51 @@
+  - platform: generic
+    name: House Humidity
+    still_image_url: !secret grafana_house_humidity
+    username: !secret grafana_username
+    password: !secret grafana_password
+  - platform: generic
+    name: House Temperature
+    still_image_url: !secret grafana_house_temperature
+    username: !secret grafana_username
+    password: !secret grafana_password
+  - platform: zoneminder
+  - platform: generic
+    name: DaFang1
+    username: !secret dafang1_username
+    password: !secret dafang1_password
+    authentication: basic
+    still_image_url: !secret dafang1_url
+    verify_ssl: false
+    scan_interval: 5  
+#  - platform: generic
+#    name: 1st Floor Camera Stream
+#    username: !secret xiaofang_username
+#    password: !secret xiaofang_password
+#    authentication: basic
+#    still_image_url: !secret xiaofang_url
+#    stream_source: !secret xiaofang_stream_source
+#    verify_ssl: false
+#  - platform: generic
+#    name: Doorbell Camera Stream
+#    username: !secret doorbell_cam_username 
+#    password: !secret doorbell_cam_password
+#    authentication: digest
+#    still_image_url: !secret doorbell_cam_image_url
+#    stream_source: !secret doorbell_cam_stream_source
+#    verify_ssl: false
+#  - platform: generic
+#    name: Front Camera Stream
+#    username: !secret swann_cam_username 
+#    password: !secret swann_cam_password
+#    authentication: digest
+#    still_image_url: !secret front_cam_image_url
+#    stream_source: !secret front_cam_stream_source
+#    verify_ssl: false
+#  - platform: generic
+#    name: Back Camera Stream
+#    username: !secret swann_cam_username 
+#    password: !secret swann_cam_password
+#    authentication: digest
+#    still_image_url: !secret back_cam_image_url
+#    stream_source: !secret back_cam_stream_source
+#    verify_ssl: false

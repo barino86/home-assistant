@@ -1,0 +1,5 @@
+  host: !secret zm_host
+  ssl: false
+  verify_ssl: false
+  username: !secret zm_username
+  password: !secret zm_password

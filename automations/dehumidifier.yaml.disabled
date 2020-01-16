@@ -1,0 +1,54 @@
+- id: 'dehumidifier_on'
+  alias: Dehumidifier On
+  initial_state: 'on'  
+  trigger:
+  - above: '48'
+    for: '01:00:00'
+    entity_id: sensor.main_floor_humidity
+    platform: numeric_state
+  - event_data:
+      command: /dehumidifier_on
+    event_type: telegram_command
+    platform: event
+  - platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /dehumidifier_on
+  condition:
+  - condition: state
+    entity_id: switch.linear_wo15z1_single_wall_outlet_switch
+    state: 'off'
+  action:
+  - data:
+      entity_id: switch.linear_wo15z1_single_wall_outlet_switch
+    service: switch.turn_on
+  - service: notify.telegram
+    data_template:
+      message: "Humidity is above 48 ({{ states.sensor.main_floor_humidity.state }}). Turning on Dehumidifier."
+- id: 'dehumidifier_off'
+  alias: Dehumidifier Off
+  initial_state: 'on'  
+  trigger:
+  - below: '47'
+    for: '01:00:00'
+    entity_id: sensor.main_floor_humidity
+    platform: numeric_state
+  - event_data:
+      command: /dehumidifier_off
+    event_type: telegram_command
+    platform: event
+  - platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /dehumidifier_off
+  condition:
+  - condition: state
+    entity_id: switch.linear_wo15z1_single_wall_outlet_switch
+    state: 'on'
+  action:
+  - data:
+      entity_id: switch.linear_wo15z1_single_wall_outlet_switch
+    service: switch.turn_off
+  - service: notify.telegram
+    data_template:
+      message: "Humidity is below 47 ({{ states.sensor.main_floor_humidity.state }}). Turning off Dehumidifier."

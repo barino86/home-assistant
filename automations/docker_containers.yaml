@@ -1,0 +1,103 @@
+- id: '1554911479861'
+  alias: Docker Container Down Notification
+  initial_state: 'on'  
+  trigger:
+  - entity_id: switch.bazarr
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.dg_collector
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.emby_media_server
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.grafana
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.guacamole
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.guacamole_daemon
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.ha_dockermon
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.hassio_supervisor
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.influxdb
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.jackett
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.mosquitto_broker
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.phpmyadmin
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.portainer
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.radarr
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.sabnzbd
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.sonarr
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.tautulli
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.traefik
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.transmission_docker
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.unifi
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.watchtower
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.zoneminder
+    for: '00:05:00'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} is {{ trigger.to_state.state }}"
+      title: "Docker:"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.catchall_warning
+  - service: notify.telegram
+    data: 
+      message: "One of the Docker containers is down."

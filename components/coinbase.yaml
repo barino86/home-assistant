@@ -1,0 +1,7 @@
+  api_key: !secret coinbase_api_key
+  api_secret: !secret coinbase_api_secret
+#  account_balance_currencies:
+#    - ETH
+  exchange_rate_currencies:
+    - BTC
+    - ETH

@@ -1,0 +1,22 @@
+- id: 'uv_protection_on'
+  alias: Warning Light 3 - Red for UV Protection On
+  initial_state: 'on'
+  trigger:
+  - entity_id: binary_sensor.protection_window
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - entity_id: script.indicator3_uv_protection_on
+    service: script.turn_on
+- id: 'wl3_off_for_good_weather'
+  alias: Warning Light 3 - Off for Good Weather
+  initial_state: 'on'
+  trigger:
+  - entity_id: binary_sensor.protection_window
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - entity_id: script.indicator3_weather_warning_off
+    service: script.turn_on

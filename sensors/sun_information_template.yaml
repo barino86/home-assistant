@@ -1,0 +1,18 @@
+  - platform: template
+    sensors:
+      sun_solar_angle:
+        friendly_name: "Sun Angle"
+        unit_of_measurement: '°'
+        value_template: "{{ '%+.1f'|format(states.sun.sun.attributes.elevation) }}"
+      sun_next_rise:
+        friendly_name: "Sun Next Sunrise"
+        value_template: '{{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%b %d - %H:%M") }}'
+      sun_next_set:
+        friendly_name: "Sun Next Sunset"
+        value_template: '{{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%b %d - %H:%M") }}'
+      sun_next_dawn:
+        friendly_name: "Sun Next Dawn"
+        value_template: '{{ as_timestamp(states.sun.sun.attributes.next_dawn) | timestamp_custom("%b %d - %H:%M") }}'
+      sun_next_dusk:
+        friendly_name: "Sun Next Dusk"
+        value_template: '{{ as_timestamp(states.sun.sun.attributes.next_dusk) | timestamp_custom("%b %d - %H:%M") }}'

@@ -1,0 +1,6 @@
+  - platform: cert_expiry
+    name: ssl shb expiry
+    host: !secret shb_domain
+  - platform: cert_expiry
+    name: ssl pivean traefik expiry
+    host: !secret root_traefik_domain

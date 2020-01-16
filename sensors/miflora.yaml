@@ -1,0 +1,12 @@
+  - platform: miflora
+    mac: !secret master_zzplant
+    name: Master ZzPlant
+    force_update: false
+    scan_interval: 14400 #4 hours
+    median: 3
+    monitored_conditions:
+      - moisture
+      - light
+      - temperature
+      - conductivity
+      - battery

@@ -1,0 +1,10 @@
+  - platform: command_line
+    name: "NAS Upload Speed"
+    command: "tail /config/sensors/nas_speedtest.txt | awk 'NR==2'"
+    unit_of_measurement: 'MB/s'
+    scan_interval: 3600
+  - platform: command_line
+    name: "NAS Download Speed"
+    command: "tail /config/sensors/nas_speedtest.txt | awk 'NR==3'"
+    unit_of_measurement: 'MB/s'
+    scan_interval: 3600

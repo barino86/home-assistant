@@ -1,0 +1,40 @@
+- id: zwave_network_ready_notification
+  alias: Zwave Network Ready Notification
+  initial_state: 'on'
+  trigger:
+  - event_data: {}
+    event_type: zwave.network_ready
+    platform: event
+  condition: []
+  action:
+  - data:
+      message: Zwave network is ready.
+    service: notify.telegram
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.zwave_network_status
+- id: zwave_network_down_notification
+  alias: Zwave Network Down Notification
+  initial_state: 'on'
+  trigger:
+  - event_data: {}
+    event_type: zwave.network_stop
+    platform: event
+  condition: []
+  action:
+  - data:
+      message: Zwave network is down.
+    service: notify.telegram
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.zwave_network_status
+- id: zwave_network_start_notification
+  alias: Zwave Network Start Notification
+  initial_state: 'on'
+  trigger:
+  - event_data: {}
+    event_type: zwave.network_start
+    platform: event
+  condition: []
+  action:
+  - data:
+      message: Zwave network started.
+    service: notify.telegram

@@ -1,0 +1,2 @@
+  - host: !secret office_roku_tv_ip
+  - host: !secret living_room_roku_tv_ip

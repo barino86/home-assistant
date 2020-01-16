@@ -1,0 +1,9 @@
+  - platform: plex
+    host: !secret syno_ip_address
+    port: !secret plex_port
+    name: synPlex
+    server: synPlex
+    username: !secret plex_username
+    password: !secret plex_password
+    token: !secret plex_token
+    ssl: false

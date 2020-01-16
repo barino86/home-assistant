@@ -1,0 +1,186 @@
+- id: telegram_bot_start
+  alias: Telegram Bot Start
+  initial_state: 'on'
+  trigger:
+  - event_data:
+      command: /start
+    event_type: telegram_command
+    platform: event
+  condition: []
+  action:
+  - data:
+      data:
+        keyboard:
+        - /crypto, /anand, /radar
+        - /abode, /ilight, /glight
+        - /polight, /palight, /blight
+        - /dehumidifier, /water, /docker
+        - /hass
+      message: commands
+    service: notify.telegram
+- id: telegram_crypto_Rate
+  alias: Telegram Crypto Rate
+  initial_state: 'on'
+  trigger:
+  - event_data:
+      command: /crypto
+    event_type: telegram_command
+    platform: event
+  condition: []
+  action:
+  - data:
+      message: "BTC: {{states.sensor.btc_exchange_rate.state}}\nETH: {{states.sensor.eth_exchange_rate.state}}\n"
+    service: notify.telegram
+- id: telegram_anand_location
+  alias: Telegram Anand Location
+  initial_state: 'on'
+  trigger:
+  - event_data:
+      command: /anand
+    event_type: telegram_command
+    platform: event
+  condition: []
+  action:
+  - data:
+      message: http://maps.google.com/maps?q={{ states.device_tracker.anand_pixel3.attributes.latitude
+        }},{{ states.device_tracker.anand_pixel3.attributes.longitude }}
+    service: notify.telegram
+- id: telegram_hass_status
+  alias: Telegram Home Assistant Status
+  initial_state: 'on'
+  trigger:
+  - event_data:
+      command: /hass
+    event_type: telegram_command
+    platform: event
+  condition: []
+  action:
+  - data:
+      data:
+        inline_keyboard:
+        - Restart:/hass_restart, Test:/hass_test
+      message: HASS is on v{{ states.sensor.hass_version.state }} and up for {{ states.sensor.hass_uptime.state
+        }} hours.
+    service: notify.telegram
+- id: telegram_ilight_status
+  alias: Telegram Island Lights Status
+  initial_state: 'on'
+  trigger:
+  - event_data:
+      command: /ilight
+    event_type: telegram_command
+    platform: event
+  condition: []
+  action:
+  - data:
+      data:
+        inline_keyboard:
+        - On:/ilight_on, Off:/ilight_off
+      message: Island Lights are {{ states.switch.island_lights.state }}
+    service: notify.telegram
+- id: telegram_weather_radar
+  alias: Telegram Weather Radar
+  initial_state: 'on'
+  trigger:
+  - event_data:
+      command: /radar
+    event_type: telegram_command
+    platform: event
+  condition: []
+  action:
+  - data:
+      title: Weather Radar Columbus at {{ now().strftime("%H:%M") }}
+      message: Weather Radar Columbus  at {{ now().strftime("%H:%M") }}
+      data:
+        photo:
+        - url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=CMH&brand=wui&num=1&delay=15&type=TR0&frame=0&scale=1.000&noclutter=0&showstorms=0&mapx=400&mapy=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=1&lightning=0&smooth=0&rand=25445968&lat=0&lon=0&label=you
+          caption: Weather Radar Columbus  at {{ now().strftime("%H:%M") }}
+    service: notify.telegram
+  - data:
+      title: Weather Radar Ohio at {{ now().strftime("%H:%M") }}
+      message: Weather Radar Ohio  at {{ now().strftime("%H:%M") }}
+      data:
+        photo:
+        - url: https://icons.wxug.com/data/weather-maps/radar/united-states/dayton-ohio-region-current-radar.gif
+          caption: Weather Radar Ohio  at {{ now().strftime("%H:%M") }}
+    service: notify.telegram
+- id: '1531497133677'
+  alias: Telegram Abode
+  initial_state: 'on'
+  trigger:
+  - event_data:
+      command: /abode
+    event_type: telegram_command
+    platform: event
+  condition: []
+  action:
+  - data:
+      data:
+        inline_keyboard:
+        - Disarm:/abode_disarm, Home:/abode_home, Away:/abode_away
+      message: Abode is {{ states.alarm_control_panel.abode_alarm.state }}
+    service: notify.telegram
+- id: '1542137995372'
+  alias: Telegram Island Lights On
+  initial_state: 'on'
+  trigger:
+  - event_data:
+      command: /ilight_on
+    event_type: telegram_command
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: switch.island_lights
+    service: switch.turn_on
+- id: telegram_dehumidifier_status
+  alias: Telegram Dehumidifier Status
+  initial_state: 'on'
+  trigger:
+  - event_data:
+      command: /dehumidifier
+    event_type: telegram_command
+    platform: event
+  condition: []
+  action:
+  - data:
+      data:
+        inline_keyboard:
+        - On:/dehumidifier_on, Off:/dehumidifier_off
+      message: Dehumidifier is {{ states.switch.linear_wo15z1_single_wall_outlet_switch.state
+        }}
+    service: notify.telegram
+- id: telegram_glight_status
+  alias: Telegram Garage Lights Status
+  initial_state: 'on'
+  trigger:
+  - event_data:
+      command: /glight
+    event_type: telegram_command
+    platform: event
+  condition: []
+  action:
+  - data:
+      data:
+        inline_keyboard:
+        - On:/glight_on, Off:/glight_off
+      message: Garage Lights are {{ states.light.homeseer_hswd200_garage_dimmer_level.state
+        }}
+    service: notify.telegram
+- id: telegram_water_status
+  alias: Telegram Water Main Status
+  initial_state: 'on'
+  trigger:
+  - event_data:
+      command: /water
+    event_type: telegram_command
+    platform: event
+  condition: []
+  action:
+  - data:
+      data:
+        inline_keyboard:
+        - On:/water_on, Off:/water_off
+      message: Water Main is {{ states.switch.dome_water_shutoff_valve_switch.state
+        }}
+    service: notify.telegram

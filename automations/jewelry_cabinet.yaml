@@ -1,0 +1,18 @@
+- id: '1521808662855'
+  alias: Jewelry Cabinet Opened Notification
+  initial_state: 'on'  
+  trigger:
+  - entity_id: binary_sensor.dome_doorwindow_sensor_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: Jewelry cabinet opened.
+    service: notify.telegram
+  - data:
+      message: "Jewelry cabinet was opened at {{ now().strftime(\"%H:%M %Y-%m-%d\"\
+        ) }}. \n\n Sincerely, \n zHASS"
+      title: '{{ now().strftime("%H:%M") }}: Jewelry cabinet opened.'
+    service: notify.smtp

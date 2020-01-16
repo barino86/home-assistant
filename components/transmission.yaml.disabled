@@ -1,0 +1,15 @@
+  host: !secret server_local_ip
+  port: !secret transmission_port
+  name: Transmission VPN
+  username: !secret transmission_username
+  password: !secret transmission_password
+  turtle_mode: true
+  scan_interval: 120
+  monitored_conditions:
+    - current_status
+    - download_speed
+    - upload_speed
+    - active_torrents
+    - paused_torrents
+#    - total_torrents
+#    - completed_torrents

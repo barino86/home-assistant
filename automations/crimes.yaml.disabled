@@ -1,0 +1,17 @@
+- id: '1555004488813_crimes'
+  initial_state: 'on'  
+  alias: Crime Alert Notification
+  trigger:
+  - above: '0'
+    entity_id: sensor.crimes_home
+    platform: numeric_state
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} is at - ({{ trigger.to_state.state }})."
+  - service: notify.telegram
+    data:
+      message: "Crime reported near home."
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.catchall_warning

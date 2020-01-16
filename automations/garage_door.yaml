@@ -1,0 +1,19 @@
+- id: '1522069446462'
+  initial_state: 'on'
+  alias: Garage Door Open Notification
+  trigger:
+  - entity_id: group.family_phones
+    from: home
+    platform: state
+  - minutes: '/5'
+    platform: time_pattern
+    seconds: 0
+  condition:
+  - condition: state
+    entity_id: binary_sensor.monoprice_garage_door_sensor_sensor
+    for: '00:05:00'
+    state: 'on'
+  action:
+  - data:
+      message: Garage door left open.
+    service: notify.telegram

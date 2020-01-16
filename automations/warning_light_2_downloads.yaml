@@ -1,0 +1,22 @@
+- id: warning_light2_cyan
+  alias: Warning Light 2 - Cyan for Downloads On
+  initial_state: 'on'
+  trigger:
+  - entity_id: input_boolean.download_status
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator2_downloads_on
+- id: warning_light2_off
+  alias: Warning Light 2 - Off for Downloads Off
+  initial_state: 'on'
+  trigger:
+  - entity_id: input_boolean.download_status
+    platform: state
+    to: 'off'  
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.indicator2_downloads_off

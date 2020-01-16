@@ -1,0 +1,8 @@
+#  - platform: unifi
+#    host: !secret unifi_domain
+#    port: !secret unifi_domain_port
+#    username: !secret unifi_username
+#    password: !secret unifi_password
+#    verify_ssl: true
+#    monitored_conditions:
+#      - rssi

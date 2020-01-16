@@ -1,0 +1,15 @@
+  - platform: zestimate
+    name: Ivy
+    api_key: !secret zillow_api_key
+    zpid:
+      - !secret zillow_zpid_ivyc
+  - platform: zestimate
+    name: Aderholt
+    api_key: !secret zillow_api_key
+    zpid:
+      - !secret zillow_zpid_ader
+  - platform: zestimate
+    name: Sassafras
+    api_key: !secret zillow_api_key
+    zpid:
+      - !secret zillow_zpid_sass

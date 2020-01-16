@@ -1,0 +1,40 @@
+- id: '1546785270434'
+  initial_state: 'on'  
+  alias: Basement Lights On When Opening Basement Door
+  trigger:
+  - entity_id: binary_sensor.basement_door_sensor_contact
+    platform: state
+    to: 'on'
+  condition:
+  - below: '20'
+    condition: numeric_state
+    entity_id: sensor.sun_solar_angle
+  action:
+  - data:
+      entity_id: switch.basement_lights
+    service: switch.turn_on
+#  - data:
+#      message: Basement door opened
+#    service: notify.telegram
+- id: '1546785753157'
+  initial_state: 'on'  
+  alias: Basement Lights Off When Unoccupied
+  trigger:
+  - entity_id: binary_sensor.basement_door_sensor_contact
+    for: '00:00:03'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.basement_occupancy
+    state: 'off'
+  - condition: state
+    entity_id: switch.basement_lights
+    state: 'on'
+  action:
+  - data:
+      entity_id: switch.basement_lights
+    service: switch.turn_off
+#  - data:
+#      message: Basement clear. Turning of basement lights.
+#    service: notify.telegram

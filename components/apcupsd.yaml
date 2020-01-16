@@ -1,0 +1,2 @@
+  host: !secret server_local_ip
+  port: 3551

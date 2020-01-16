@@ -1,0 +1,30 @@
+- id: homeseer_hold_on
+  alias: HomeSeer Hold On
+  initial_state: 'on'  
+  trigger:
+  - event_data:
+      scene_data: 7740
+      scene_id: 1
+    event_type: zwave.scene_activated
+    platform: event
+  action:
+  - service: notify.telegram
+    data_template:
+      message: Hold on {{"light." + trigger.event.data.entity_id.split(".")[1] + "_level"
+        }}
+      title: HomeSeer Hold On
+- id: homeseer_hold_off
+  alias: HomeSeer Hold Off
+  initial_state: 'on'  
+  trigger:
+  - event_data:
+      scene_data: 7740
+      scene_id: 2
+    event_type: zwave.scene_activated
+    platform: event
+  action:
+  - service: notify.telegram
+    data_template:
+      message: Hold off {{"light." + trigger.event.data.entity_id.split(".")[1] +
+        "_level" }}
+      title: HomeSeer Hold Off

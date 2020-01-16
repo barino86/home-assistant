@@ -1,0 +1,66 @@
+- id: '1554996942549_catch_all_warning'
+  alias: Boolean Change - Catch All Warning
+  initial_state: 'on'  
+  trigger:
+  - entity_id: input_boolean.catchall_warning
+    platform: state
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} is {{ trigger.to_state.state }}"
+- id: '1554996942549_download_status'
+  initial_state: 'on'  
+  alias: Boolean Change - Download Status
+  trigger:
+  - entity_id: input_boolean.download_status
+    platform: state
+  condition: []
+  action:
+#  - service: notify.telegram
+#    data_template:
+#      message: "{{ trigger.to_state.attributes.friendly_name }} is {{ trigger.to_state.state }}"
+- id: '1554996942549_vacation_mode'
+  initial_state: 'on'  
+  alias: Boolean Change - Vacation Mode
+  trigger:
+  - entity_id: input_boolean.vacation_mode
+    platform: state
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} is {{ trigger.to_state.state }}"
+- id: '1554996942549_persistent_lights'
+  initial_state: 'on'  
+  alias: Boolean Change - Persistent Lights
+  trigger:
+  - entity_id: input_boolean.persistent_lights
+    platform: state
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "{{ trigger.to_state.attributes.friendly_name }} is {{ trigger.to_state.state }}"
+- id: '1554996942549_living_room_tv_caption'
+  initial_state: 'on'  
+  alias: Boolean Change - Living Room TV Caption
+  trigger:
+  - entity_id: input_boolean.living_room_tv_caption
+    platform: state
+  condition: []
+  action:
+#  - service: notify.telegram
+#    data_template:
+#      message: "{{ trigger.to_state.attributes.friendly_name }} is {{ trigger.to_state.state }}"
+- id: '1554996942549_skip_ad'
+  alias: Boolean Change - Living Room TV Skip Ad
+  initial_state: 'on'  
+  trigger:
+  - entity_id: input_boolean.living_room_skip_ad
+    platform: state
+  condition: []
+  action:
+#  - service: notify.telegram
+#    data_template:
+#      message: "{{ trigger.to_state.attributes.friendly_name }} is {{ trigger.to_state.state }}"

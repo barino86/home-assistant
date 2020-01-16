@@ -1,0 +1,82 @@
+- id: not_armed_while_away_notification
+  alias: Abode Disarmed While Away Notification
+  initial_state: 'on'  
+  trigger:
+  - entity_id: group.family_phones
+    from: home
+    platform: state
+  - minutes: '/30'
+    platform: time_pattern
+    seconds: 0
+  condition:
+  - condition: state
+    entity_id: sensor.abode_armed
+    for: '00:30:00'
+    state: 'false'
+  - condition: template
+    value_template: '{{ states.person.anand.state != "home" }}'
+  - condition: template
+    value_template: '{{ states.person.veena.state != "home" }}'
+  action:
+  - data:
+      message: Abode not armed while away.
+    service: notify.telegram
+- id: 'abode_fault'
+  initial_state: 'on'
+  alias: Abode Panel Fault Notification
+  trigger:
+  - event_data: {}
+    event_type: abode_panel_fault
+    platform: event
+  condition: []
+  action:
+  - data:
+      message: Abode reported a fault.
+    service: notify.telegram
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.catchall_warning
+- id: 'abode_fault_restored'
+  initial_state: 'on'  
+  alias: Abode Panel Fault Restored Notification
+  trigger:
+  - event_data: {}
+    event_type: abode_panel_restore
+    platform: event
+  condition: []
+  action:
+  - data:
+      message: Abode panel fault restored.
+    service: notify.telegram
+- id: 'abode_alarm_lights_on'
+  initial_state: 'on'
+  alias: Abode Alarm While Dark - Lights On
+  trigger:
+  - event_data: {}
+    event_type: abode_alarm
+    platform: event
+  condition: 
+  - below: '15'
+    condition: numeric_state
+    entity_id: sensor.sun_solar_angle
+  action:
+  - data:
+      entity_id: group.lights_outdoor
+    service: homeassistant.turn_on
+  - data:
+      entity_id: group.lights_indoor
+    service: homeassistant.turn_on
+- id: 'abode_alarm_end_lights_off'
+  initial_state: 'on'
+  alias: Abode Alarm While Dark - Lights Off
+  trigger:
+  - event_data: {}
+    event_type: abode_alarm
+    platform: event
+  condition:
+  - below: '15'
+    condition: numeric_state
+    entity_id: sensor.sun_solar_angle
+  action:
+  - data:
+      entity_id: group.lights_outdoor
+    service: homeassistant.turn_off

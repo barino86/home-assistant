@@ -1,0 +1,89 @@
+- id: lights_on_during_vacation
+  initial_state: 'on'
+  alias: Lights On During Vacation
+  trigger:
+  - event: sunset
+    offset: -00:45:00
+    platform: sun
+  condition:
+  - condition: state
+    entity_id: sensor.abode_armed
+    state: "true"
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'on'
+  action:
+  - data:
+      entity_id: switch.island_lights
+    service: switch.turn_on
+  - data:
+      entity_id: light.homeseer_hswd200_bedroom_dimmer_level
+    service: light.turn_on
+  - data:
+      entity_id: light.homeseer_hswd200_porch_dimmer_level
+    service: light.turn_on
+  - data:
+      message: On vacation and Sun down. Turning on some lights.
+    service: notify.telegram
+- id: lights_on_while_away_during_nights
+  initial_state: 'on'
+  trigger:
+  - entity_id: alarm_control_panel.abode_alarm
+    platform: state
+    to: armed_away
+  action:
+  - data:
+      entity_id: switch.island_lights
+    service: switch.turn_on
+  - data:
+      entity_id: light.homeseer_hswd200_bedroom_dimmer_level
+    service: light.turn_on
+  - data:
+      entity_id: light.homeseer_hswd200_porch_dimmer_level
+    service: light.turn_on
+  - data:
+      message: Away and Sun down. Turning on some lights.
+    service: notify.telegram
+  alias: Lights On While Exit
+  condition:
+  - below: '10'
+    condition: numeric_state
+    entity_id: sensor.sun_solar_angle
+- id: lights_off_while_away_during_day
+  initial_state: 'on'
+  alias: Lights Off While Away
+  trigger:
+  - event: sunrise
+    offset: 00:30:00
+    platform: sun
+  - event: sunrise
+    offset: 01:00:00
+    platform: sun
+  - event: sunrise
+    offset: 01:30:00
+    platform: sun
+  condition:
+  - condition: state
+    entity_id: sensor.abode_armed
+    state: "true"
+  - condition: state
+    entity_id: group.ecobee_occupancy_sensors
+    state: 'off'
+  - condition: or
+    conditions: 
+      - condition: state
+        entity_id: group.lights_outdoor
+        state: 'on'
+      - condition: state
+        entity_id: group.lights_indoor
+        state: 'on'
+  action:
+  - data:
+      entity_id: group.lights_indoor
+    service: homeassistant.turn_off
+  - data:
+      entity_id: group.lights_outdoor
+    service: homeassistant.turn_off
+  - data:
+      message: Away but Sun up. Turning off all lights.
+    service: notify.telegram

@@ -1,0 +1,30 @@
+vacation_mode:
+  name: Vacation Mode
+  initial: off
+#announce_abode_status:
+#  name: Announce Abode Status
+#  initial: off
+living_room_skip_ad:
+  name: Skip Ad in Living Room
+  initial: off
+download_status:
+  name: Is Something Downloading?
+  initial: off
+catchall_warning:
+  name: Catch All Warning? 
+  initial: off
+persistent_lights:
+  name: Persistent Lights
+  initial: off
+living_room_tv_caption:
+  name: Living Room Roku TV Cation
+  initial: on
+zwave_network_status:
+  name: Zwave Network Status
+  initial: off
+restart_home_assistant:
+  name: Restart Home Assistant
+  initial: off
+christmas_mode:
+  name: Christmas Mode
+  initial: off

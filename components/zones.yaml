@@ -1,0 +1,15 @@
+  - name: home
+    latitude: !secret home_latitude
+    longitude: !secret home_longitude
+    radius: 150
+    icon: mdi:home
+  - name: work
+    latitude: !secret work_latitude
+    longitude: !secret work_longitude
+    radius: 400
+    icon: mdi:factory
+  - name: daycare
+    latitude: !secret daycare_latitude
+    longitude: !secret daycare_longitude
+    radius: 300
+    icon: mdi:school

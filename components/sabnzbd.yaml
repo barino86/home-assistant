@@ -1,0 +1,16 @@
+  host: !secret server_local_ip
+  api_key: !secret sabnzbd_api_key
+  ssl: false
+  port: !secret sabnzbd_port
+  sensors:
+    - 'current_status'
+    - 'speed'
+    - 'queue_size'
+    - 'queue_remaining'
+#    - 'disk_size'
+    - 'disk_free'
+    - 'queue_count'
+#    - 'day_size'
+#    - 'week_size'
+#    - 'month_size'
+#    - 'total_size'
