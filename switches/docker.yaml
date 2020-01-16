@@ -1,0 +1,147 @@
+#Media
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/embyms
+    name: Emby Media Server
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/tautulli
+    name: Tautulli
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+#Frontend
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/traefik
+    name: Traefik
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/guacamole
+    name: Guacamole 
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/guacd
+    name: Guacamole Daemon
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/portainer
+    name: Portainer
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+#Docker
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/watchtower
+    name: Watchtower
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/docker-gc
+    name: DG Collector
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+#Smarthome
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/ha-dockermon
+    name: HA DockerMon
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/homeassistant
+    name: HASSio
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/hassio_supervisor
+    name: HASSio Supervisor
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/mosquitto
+    name: Mosquitto Broker
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+# Security
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/zoneminder
+    name: ZoneMinder
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+#Downloaders
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/sabnzbd
+    name: SABnzbd
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/transmission-vpn
+    name: Transmission Docker
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+#PVRs
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/radarr
+    name: Radarr
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/sonarr
+    name: Sonarr
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/jackett
+    name: Jackett
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/bazarr
+    name: Bazarr
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+#Database
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/phpmyadmin
+    name: phpMyAdmin
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/grafana
+    name: Grafana
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.1.90:8151/container/influxdb
+    name: InfluxDB
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'

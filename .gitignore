@@ -8,5 +8,7 @@
 !customize.yaml
 !configuration.yaml
 !scripts.yaml
+!www
 !www/*
+!switches
 !switches/*
