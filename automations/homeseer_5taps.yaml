@@ -51,16 +51,3 @@
       parameter: 31
       value: 64
     service: zwave.set_config_parameter
-- id: garage_5tap_off
-  alias: HomeSeer 5 Tap Off - Abode Disarm
-  initial_state: 'on'  
-  trigger:
-  - event_data:
-      scene_data: 8040
-      scene_id: 2
-    event_type: zwave.scene_activated
-    platform: event
-  action:
-  - data:
-      entity_id: alarm_control_panel.abode_alarm
-    service: alarm_control_panel.alarm_disarm
