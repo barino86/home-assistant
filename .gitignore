@@ -23,5 +23,5 @@ includes/disabled
 !components
 !components/*
 !automations
-automations/homeseer_5taps_private.yaml
 !automations/*
+automations/homeseer_5taps_private.yaml
