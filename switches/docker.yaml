@@ -1,147 +1,314 @@
-#Media
-  - platform: rest
-    resource: http://192.168.1.90:8151/container/embyms
-    name: Emby Media Server
-    body_on: '{"state": "start"}'
-    body_off: '{"state": "stop"}'
-    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
-  - platform: rest
-    resource: http://192.168.1.90:8151/container/tautulli
-    name: Tautulli
-    body_on: '{"state": "start"}'
-    body_off: '{"state": "stop"}'
-    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
-
 #Frontend
   - platform: rest
-    resource: http://192.168.1.90:8151/container/traefik
-    name: Traefik
+    resource: http://192.168.5.90:8151/container/traefik
+    name:  Docker Traefik
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
   - platform: rest
-    resource: http://192.168.1.90:8151/container/guacamole
-    name: Guacamole 
+    resource: http://192.168.5.90:8151/container/oauth
+    name:  Docker OAuth
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
   - platform: rest
-    resource: http://192.168.1.90:8151/container/guacd
-    name: Guacamole Daemon
+    resource: http://192.168.5.90:8151/container/portainer
+    name:  Docker Portainer
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
   - platform: rest
-    resource: http://192.168.1.90:8151/container/portainer
-    name: Portainer
-    body_on: '{"state": "start"}'
-    body_off: '{"state": "stop"}'
-    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
-
-#Docker
-  - platform: rest
-    resource: http://192.168.1.90:8151/container/watchtower
-    name: Watchtower
+    resource: http://192.168.5.90:8151/container/organizr
+    name:  Docker Organizr
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
   - platform: rest
-    resource: http://192.168.1.90:8151/container/docker-gc
-    name: DG Collector
+    resource: http://192.168.5.90:8151/container/heimdall
+    name:  Docker Heimdall
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/autoindex
+    name:  Docker AutoIndex
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
 
 #Smarthome
   - platform: rest
-    resource: http://192.168.1.90:8151/container/ha-dockermon
-    name: HA DockerMon
+    resource: http://192.168.5.90:8151/container/ha-dockermon
+    name:  Docker HADockerMon
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
   - platform: rest
-    resource: http://192.168.1.90:8151/container/homeassistant
-    name: HASSio
+    resource: http://192.168.5.90:8151/container/homeassistant
+    name:  Docker HASSio
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
   - platform: rest
-    resource: http://192.168.1.90:8151/container/hassio_supervisor
-    name: HASSio Supervisor
+    resource: http://192.168.5.90:8151/container/hassio_supervisor
+    name:  Docker HASSio Supervisor
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
   - platform: rest
-    resource: http://192.168.1.90:8151/container/mosquitto
-    name: Mosquitto Broker
-    body_on: '{"state": "start"}'
-    body_off: '{"state": "stop"}'
-    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
-
-# Security
-  - platform: rest
-    resource: http://192.168.1.90:8151/container/zoneminder
-    name: ZoneMinder
-    body_on: '{"state": "start"}'
-    body_off: '{"state": "stop"}'
-    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
-
-#Downloaders
-  - platform: rest
-    resource: http://192.168.1.90:8151/container/sabnzbd
-    name: SABnzbd
+    resource: http://192.168.5.90:8151/container/mosquitto
+    name:  Docker Mosquitto
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
   - platform: rest
-    resource: http://192.168.1.90:8151/container/transmission-vpn
-    name: Transmission Docker
-    body_on: '{"state": "start"}'
-    body_off: '{"state": "stop"}'
-    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
-
-#PVRs
-  - platform: rest
-    resource: http://192.168.1.90:8151/container/radarr
-    name: Radarr
-    body_on: '{"state": "start"}'
-    body_off: '{"state": "stop"}'
-    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
-  - platform: rest
-    resource: http://192.168.1.90:8151/container/sonarr
-    name: Sonarr
-    body_on: '{"state": "start"}'
-    body_off: '{"state": "stop"}'
-    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
-  - platform: rest
-    resource: http://192.168.1.90:8151/container/jackett
-    name: Jackett
-    body_on: '{"state": "start"}'
-    body_off: '{"state": "stop"}'
-    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
-  - platform: rest
-    resource: http://192.168.1.90:8151/container/bazarr
-    name: Bazarr
+    resource: http://192.168.5.90:8151/container/zoneminder
+    name:  Docker ZoneMinder
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
 
 #Database
   - platform: rest
-    resource: http://192.168.1.90:8151/container/phpmyadmin
-    name: phpMyAdmin
+    resource: http://192.168.5.90:8151/container/mariadb
+    name:  Docker MariaDB
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
   - platform: rest
-    resource: http://192.168.1.90:8151/container/grafana
-    name: Grafana
+    resource: http://192.168.5.90:8151/container/phpmyadmin
+    name:  Docker phpMyAdmin
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
   - platform: rest
-    resource: http://192.168.1.90:8151/container/influxdb
-    name: InfluxDB
+    resource: http://192.168.5.90:8151/container/postgres
+    name:  Docker Postgres
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/grafana
+    name:  Docker Grafana
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/influxdb
+    name:  Docker InfluxDB
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+    
+#Downloaders
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/sabnzbd
+    name:  Docker SABnzbd
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/transmission-vpn
+    name:  Docker Transmission
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/qbittorrent
+    name:  Docker qBittorrent
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/jdownloader
+    name:  Docker jDownloader
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+# Indexers
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/jackett
+    name:  Docker Jackett
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/hydra
+    name:  Docker NZBHydra
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+#PVRs
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/radarr
+    name:  Docker Radarr
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/sonarr
+    name:  Docker Sonarr
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/lidarr
+    name:  Docker Lidarr
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+#Media
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/airsonic
+    name: Docker Airsonic
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/plexms
+    name: Docker Plex
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/embyms
+    name: Docker Emby
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/jellyfin
+    name: Docker Jellyfin
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/tautulli
+    name:  Docker Tautulli
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+#Media File Management
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/bazarr
+    name:  Docker Bazarr
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/picard
+    name:  Docker Picard
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/handbrake
+    name:  Docker Handbrake 
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/mkvtoolnix
+    name:  Docker MKVToolNix
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/makemkv
+    name:  Docker MakeMKV
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/filebot
+    name:  Docker FileBot
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+    
+#Utilities
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/firefox
+    name:  Docker Firefox
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/glances
+    name:  Docker Glances
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/logarr
+    name:  Docker Logarr
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/apcupsd
+    name:  Docker APCUPSD
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/qdirstat
+    name:  Docker qDirStat
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/guacamole
+    name:  Docker Guacamole 
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/guacd
+    name:  Docker Guacd
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/statping
+    name:  Docker StatPing
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/dozzle
+    name:  Docker Dozzle
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/vscode
+    name:  Docker VSCode
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/smokeping
+    name:  Docker SmokePing
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
+#Docker
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/ouroboros
+    name:  Docker Ouroboros
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+  - platform: rest
+    resource: http://192.168.5.90:8151/container/docker-gc
+    name: Docker GC
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'

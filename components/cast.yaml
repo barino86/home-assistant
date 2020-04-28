@@ -1,0 +1,5 @@
+  media_player:
+    - host: !secret kitchen_display
+    - host: !secret office_chromecast
+    - host: !secret office_speaker
+    - host: !secret basement_speaker

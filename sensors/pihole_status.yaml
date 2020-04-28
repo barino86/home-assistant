@@ -1,0 +1,5 @@
+  - platform: command_line
+    name: PiHole Status
+    command: !secret pihole_status_command
+    value_template: >
+      {{ value_json.status }}

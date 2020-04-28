@@ -1,0 +1,20 @@
+  google_actions:
+    filter:
+      include_domains:
+        - light
+        - input_boolean
+
+#      include_entities:
+#        - light.kitchen
+#        - light.kitchen_left
+#      include_domains:
+#        - switch
+#      exclude_entities:
+#        - switch.outside
+#    entity_config:
+#      switch.kitchen:
+#        name: Custom Name for Google Assistant
+#        aliases:
+#         - bright lights
+#         - entry lights
+#        room: living room

@@ -1,3 +1,12 @@
+miflora_restart_rpis:
+  alias: Miflora Restart on Raspberry Pis
+  sequence:
+    - service: shell_command.miflora_restart_rpi3
+    - service: shell_command.miflora_restart_rpi0
+enable_pihole:
+  alias: Enable PiHole
+  sequence:
+    service: shell_command.pihole_enable
 zwave_network_on:
   alias: 'Zwave Network On'
   sequence:
@@ -441,11 +450,11 @@ indicator4_windowdoor_closed:
         parameter: 24
         value: 'Off'
       service: zwave.set_config_parameter
-indicator3_weather_warning_off:
-  alias: 'Indicator 3 Weather Warning Off'
+indicator3_plants_warning_off:
+  alias: 'Indicator 3 Plants Warning Off'
   sequence:
     - condition: state
-      entity_id: binary_sensor.protection_window
+      entity_id: input_boolean.plants_warning
       state: 'off'
     - condition: state
       entity_id: input_boolean.zwave_network_status
@@ -470,11 +479,11 @@ indicator3_weather_warning_off:
         parameter: 23
         value: 'Off'
       service: zwave.set_config_parameter
-indicator3_uv_protection_on:
-  alias: 'Indicator 3 UV Protection On'
+indicator3_plants_warning_on:
+  alias: 'Indicator 3 Plants Warning On'
   sequence:
     - condition: state
-      entity_id: binary_sensor.protection_window
+      entity_id: input_boolean.plants_warning
       state: 'on'
     - condition: state
       entity_id: input_boolean.zwave_network_status
@@ -482,22 +491,22 @@ indicator3_uv_protection_on:
     - data:
         node_id: 21
         parameter: 23
-        value: Yellow
+        value: Cyan
       service: zwave.set_config_parameter
     - data:
         node_id: 22
         parameter: 23
-        value: Yellow
+        value: Cyan
       service: zwave.set_config_parameter
     - data:
         node_id: 23
         parameter: 23
-        value: Yellow
+        value: Cyan
       service: zwave.set_config_parameter
     - data:
         node_id: 24
         parameter: 23
-        value: Yellow
+        value: Cyan
       service: zwave.set_config_parameter
 indicator2_downloads_on:
   alias: 'Indicator 2 Downloads On'
@@ -511,22 +520,22 @@ indicator2_downloads_on:
     - data:
         node_id: 21
         parameter: 22
-        value: Cyan
+        value: Magenta
       service: zwave.set_config_parameter
     - data:
         node_id: 22
         parameter: 22
-        value: Cyan
+        value: Magenta
       service: zwave.set_config_parameter
     - data:
         node_id: 23
         parameter: 22
-        value: Cyan
+        value: Magenta
       service: zwave.set_config_parameter
     - data:
         node_id: 24
         parameter: 22
-        value: Cyan
+        value: Magenta
       service: zwave.set_config_parameter
 indicator2_downloads_off:
   alias: 'Indicator 2 Downloads Off'

@@ -2,7 +2,7 @@
   alias: Vacuum State Notifications
   description: ''
   trigger:
-  - entity_id: vacuum.rocky
+  - entity_id: vacuum.brutus
     platform: state
 #    from: ''
 #    for: "00:01:00"
@@ -12,4 +12,4 @@
   action:
   - service: notify.telegram
     data_template:
-      message: "Rocky is now {{ states.vacuum.rocky.state }}."
+      message: "Brutus is now {{ states.vacuum.brutus.state }}."

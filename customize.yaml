@@ -26,13 +26,16 @@ binary_sensor.dr_right_window:
   device_class: window
 binary_sensor.basement_door_sensor_contact:
   device_class: door
+  friendly_name: Basement Door
 switch.transmission_vpn:
   friendly_name: Transmission Alternate Speed
   initial_state: 'off'
 binary_sensor.dome_doorwindow_sensor_sensor:
   device_class: door
+  friendly_name: Jewelry Cabinet Door
 binary_sensor.monoprice_garage_door_sensor_sensor:
   device_class: garage_door
+  friendly_name: Garage Door
 binary_sensor.dome_motion_detector_sensor:
   device_class: motion
 camera.doorbell:
@@ -72,3 +75,62 @@ sensor.rocky_filter_left:
   icon: mdi:gauge
 sensor.rocky_sensor_dirty_left:
   icon: mdi:gauge
+binary_sensor.dome_leak_sensor_sump_sensor:
+  friendly_name: Leak Sensor Sump Pump
+binary_sensor.dome_leak_sensor_washer_sensor:
+  friendly_name: Leak Sensor Washer
+binary_sensor.dome_leak_sensor_kitchen_sensor:
+  friendly_name: Leak Sensor Kitchen Sink
+sensor.elexa_consumer_products_inc_dome_door_window_sensor_battery_level:
+  friendly_name: Jewelry Cabinet Sensor Battery
+sensor.vision_security_zg8101_garage_door_detector_battery_level:
+  friendly_name: Garage Door Sensor Battery
+sensor.elexa_consumer_products_inc_dome_leak_sensor_battery_level:
+  friendly_name: Leak Sensor Sump Pump Battery
+sensor.elexa_consumer_products_inc_dome_leak_sensor_battery_level_2:
+  friendly_name: Leak Sensor Washer Battery
+sensor.elexa_consumer_products_inc_dome_leak_sensor_battery_level_3:
+  friendly_name: Leak Sensor Kitchen Sink Battery
+sensor.elexa_consumer_products_inc_dome_motion_detector_battery_level:
+  friendly_name: Motion Sensor Garage Battery
+sensor.guest_dracaena_mqtt1_battery:
+  friendly_name: Plant Sensor Guest Dracaena Battery
+sensor.landing_snake_left_mqtt2_battery:
+  friendly_name: Plant Sensor Landing Snake Left Battery
+sensor.living_dracena_mqtt2_battery: {}
+sensor.living_dracaena_mqtt2_battery:
+  friendly_name: Living Dracaena Battery
+sensor.landing_snake_right_mqtt2_battery:
+  friendly_name: Plant Sensor Landing Snake Right Battery
+sensor.master_zzplant_mqtt2_battery:
+  friendly_name: Plant Sensor Master zzPlant Battery
+sensor.living_zzplant_mqtt2_battery:
+  friendly_name: Plant Sensor Living zzPlant Battery
+sensor.front_zzplant_battery:
+  friendly_name: Plant Sensor Front zzPlant Battery
+sensor.loft_ficus_battery:
+  friendly_name: Plant Sensor Loft Ficus Battery
+sensor.master_zzplant_mqtt2_moisture:
+  friendly_name: Master zzPlant Moisture
+sensor.living_zzplant_mqtt2_moisture:
+  friendly_name: Living zzPlant Moisture
+sensor.living_dracena_mqtt2_moisture:
+  friendly_name: Living Dracaena Moisture
+sensor.landing_snake_right_mqtt2_moisture:
+  friendly_name: Landing Snake Plant Right Moisture
+sensor.landing_snake_left_mqtt2_moisture:
+  friendly_name: Landing Snake Plant Left Moisture
+sensor.guest_dracaena_mqtt1_moisture:
+  friendly_name: Guest Dracaena Moisture
+binary_sensor.192_168_5_90_8154:
+  friendly_name: ZoneMinder
+sensor.living_dracaena_mqtt2_moisture:
+  friendly_name: Living Dracaena Moisture
+sensor.loft_ficus_mqtt2_moisture:
+  friendly_name: Loft Ficus Moisture
+sensor.loft_ficus_mqtt2_battery:
+  friendly_name: Loft Ficus Battery
+sensor.front_zzplant_mqtt2_moisture:
+  friendly_name: Front zzPlant Moisture
+sensor.front_zzplant_mqtt2_battery:
+  friendly_name: Front zzPlant Battery

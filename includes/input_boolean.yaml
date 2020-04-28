@@ -28,3 +28,9 @@ restart_home_assistant:
 christmas_mode:
   name: Christmas Mode
   initial: off
+cast_home_assistant:
+  name: Cast Home Assistant
+  initial: off
+plants_warning:
+  name: Plants Warning
+  initial: off

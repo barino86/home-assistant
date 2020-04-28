@@ -17,6 +17,9 @@
   - below: '10'
     condition: numeric_state
     entity_id: sensor.sun_solar_angle
+  - condition: time
+    after: '16:30:00'
+    before: '04:00:00'
   action:
   - data:
       entity_id: group.lights_1stfloor

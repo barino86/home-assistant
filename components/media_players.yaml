@@ -9,3 +9,7 @@
     host: !secret basement_shieldtv_ip
     device_class: androidtv
     get_sources:  true
+  - platform: emby
+    host: !secret server_local_ip
+    port: 8096
+    api_key: !secret emby_api_key

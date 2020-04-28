@@ -20,13 +20,14 @@ default_config:
 #introduction:
 
 discovery:
-  ignore:
-    - homekit
-    - roku
   
 system_health: 
 
-custom_updater:
+breaking_changes:
+
+websocket_api:
+
+#custom_updater:
 
 frontend:
   # Add themes
@@ -36,13 +37,17 @@ frontend:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
-#  api_password: !secret api_password
 #  ssl_certificate: !secret ssl_certificate
 #  ssl_key: !secret ssl_key
   base_url: !secret base_url
   server_port: !secret server_port
+#  use_x_forwarded_for: true
   ip_ban_enabled: True
-  login_attempts_threshold: 10
+  login_attempts_threshold: 5
+  cors_allowed_origins:
+    - https://cast.home-assistant.io
+    - https://home-assistant.io
+#  trusted_networks:
 
 # Text to speech
 tts:
@@ -84,6 +89,10 @@ zwave:
   usb_path: /dev/ttyACM0
   network_key: !secret zwave_network_key
 
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+
 telegram_bot: !include components/telegram_bot.yaml
 group: !include groups.yaml
 automation: !include_dir_merge_list automations/
@@ -107,16 +116,18 @@ input_boolean: !include includes/input_boolean.yaml
 input_select: !include includes/input_select.yaml
 #input_number: !include includes/input_number.yaml
 zone: !include components/zones.yaml
-openuv: !include components/openuv.yaml
-google_assistant: !include components/google_assistant.yaml
+#openuv: !include components/openuv.yaml
+#google_assistant: !include components/google_assistant.yaml
 recorder: !include includes/recorder_mariadb.yaml
 apcupsd: !include components/apcupsd.yaml
 vacuum: !include components/roborock_s6.yaml
 roku: !include components/roku.yaml
 pi_hole: !include components/pihole.yaml
-cast: !include includes/cast.yaml
+cast: !include components/cast.yaml
 plant: !include components/plant.yaml
-
+tplink: !include components/tplink.yaml
 #cloud: !include includes/cloud.yaml
+shell_command: !include includes/shell_commands.yaml
+
 #media_player: !include includes/media_players.yaml
-#shell_command: !include includes/shell_commands.yaml
+

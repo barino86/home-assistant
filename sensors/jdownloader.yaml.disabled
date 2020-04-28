@@ -1,0 +1,5 @@
+  - platform: myjdownloader
+    email: !secret jdownloader_email
+    password: !secret jdownloader_password
+    name: JDownloader # optional, if not provided all JDownloader devices will be generated.
+    scan_interval: 60 # optional - default is 60

@@ -1,3 +1,19 @@
+- id: '1580765169926'
+  alias: Cast Home Assistant
+  description: ''
+  trigger:
+  - entity_id: input_boolean.cast_home_assistant
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: media_player.media_stop
+    entity_id: media_player.kitchen_display
+  - delay: '00:00:01'
+  - data:
+      entity_id: media_player.kitchen_display
+      view_path: home
+    service: cast.show_lovelace_view
 - id: hass_started_notification
   alias: Home Assistant Start Notification
   initial_state: 'on'  
@@ -125,9 +141,9 @@
     entity_id: script.indicator4_windowdoor_closed
   # light 3
   - service: script.turn_on
-    entity_id: script.indicator3_weather_warning_off
+    entity_id: script.indicator3_plants_warning_off
   - service: script.turn_on
-    entity_id: script.indicator3_uv_protection_on
+    entity_id: script.indicator3_plants_warning_on
   #light 2
   - service: script.turn_on
     entity_id: script.indicator2_downloads_on

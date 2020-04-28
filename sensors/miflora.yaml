@@ -1,8 +1,8 @@
   - platform: miflora
-    mac: !secret master_zzplant
-    name: Master ZzPlant
-    force_update: false
-    scan_interval: 14400 #4 hours
+    mac: !secret loft_ficus
+    name: Loft Ficus
+    force_update: true
+    scan_interval: 14400
     median: 3
     monitored_conditions:
       - moisture
@@ -10,3 +10,18 @@
       - temperature
       - conductivity
       - battery
+
+  - platform: miflora
+    mac: !secret front_zzplant
+    name: Front zzPlant
+    force_update: true
+    scan_interval: 14400
+    median: 3
+    monitored_conditions:
+      - moisture
+      - light
+      - temperature
+      - conductivity
+      - battery
+
+

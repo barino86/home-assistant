@@ -1,6 +1,5 @@
 security_doors:
   name: Door Contact Sensors
-  control: hidden
   entities: 
     - binary_sensor.back_door
     - binary_sensor.front_door
@@ -8,7 +7,6 @@ security_doors:
 
 security_windows:
   name: Window Contact Sensors
-  control: hidden
   entities: 
     - binary_sensor.dr_bay_window
     - binary_sensor.dr_center_window
@@ -26,14 +24,12 @@ security_windows:
 
 family_phones:
   name: Family Phones
-  control: hidden
   entities: 
     - device_tracker.pixel_3_v
     - device_tracker.pixel_3_a
 
 family_location:
   name: Family Location
-  control: hidden
   entities: 
     - device_tracker.a_pixel3
     - device_tracker.v_pizel3
@@ -67,7 +63,6 @@ lights_1stfloor:
 
 ecobee_occupancy_sensors:
   name: Ecobee Occupancy Sensors
-  control: hidden
   entities: 
     - binary_sensor.main_floor_occupancy
     - binary_sensor.master_bedroom_occupancy
@@ -78,7 +73,6 @@ ecobee_occupancy_sensors:
 
 leak_sensors_status:
   name: Leak Sensors Status
-  control: hidden
   entities:
     - binary_sensor.dome_leak_sensor_sump_sensor
     - binary_sensor.dome_leak_sensor_washer_sensor

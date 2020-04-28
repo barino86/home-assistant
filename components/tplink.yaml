@@ -1,0 +1,4 @@
+  discovery: false
+  switch:
+    - host: !secret island_lights_ip
+    - host: !secret basement_lights_ip

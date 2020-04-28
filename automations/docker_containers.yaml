@@ -1,3 +1,25 @@
+- id: '1580934900602'
+  alias: Docker Recreate VPN Apps
+  description: ''
+  trigger:
+  - entity_id: switch.docker_jackett
+    for: '00:01:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.docker_qbittorrent
+    for: '00:01:00'
+    platform: state
+    to: 'off'
+  - entity_id: switch.docker_jdownloader
+    for: '00:01:00'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: shell_command.docker_recreate_vpn
+  - data:
+      message: Jackett recreated by home assistant.
+    service: notify.telegram
 - id: '1554911479861'
   alias: Docker Container Down Notification
   initial_state: 'on'  

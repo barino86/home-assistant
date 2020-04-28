@@ -1,0 +1,20 @@
+- alias: Disable Pi-Hole
+  id: pihole_disable
+  trigger:
+  - platform: state
+    entity_id: input_select.pihole_time
+  action:
+  - service: shell_command.pihole_disable
+- alias: Reset PiHole Disable Time
+  trigger:
+  - platform: state
+    entity_id: script.enable_pihole
+  - platform: state
+    entity_id: sensor.pihole_status
+    from: 'disabled'
+    to: 'enabled'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.pihole_time
+      option: Select Time

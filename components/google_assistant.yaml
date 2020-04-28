@@ -18,6 +18,10 @@
       name: "Reload Automation"
       room: 'Home Assistant'
       expose: true
+    input_boolean.cast_home_assistant: 
+      name: "Cast Home Assistant"
+      room: 'Home Assistant'
+      expose: true
     input_boolean.restart_home_assistant: 
       name: "Restart Home Assistant"
       room: 'Home Assistant'

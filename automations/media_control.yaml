@@ -83,7 +83,7 @@
   condition: []
   action:
   - data:
-      entity_id: switch.dome_onoff_plugin_switch_switch
+      entity_id: switch.jasco_ge_outlet_switch
     service: switch.turn_on
 - id: '1542550978349'
   alias: Subwoofer Off When Denon AVR Turns Off
@@ -98,5 +98,5 @@
   condition: []
   action:
   - data:
-      entity_id: switch.dome_onoff_plugin_switch_switch
+      entity_id: switch.jasco_ge_outlet_switch
     service: switch.turn_off
