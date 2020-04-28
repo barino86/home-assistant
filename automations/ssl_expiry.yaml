@@ -3,7 +3,7 @@
   initial_state: 'on'
   trigger:
   - below: '15'
-    entity_id: sensor.ssl_pivean_traefik_expiry
+    entity_id: sensor.ssl_home_traefik_expiry
     platform: numeric_state
   - below: '15'
     entity_id: sensor.ssl_shb_expiry
