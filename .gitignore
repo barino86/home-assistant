@@ -25,3 +25,4 @@ includes/disabled
 !automations
 !automations/*
 automations/homeseer_5taps_secret.yaml
+sensors/nas_speedtest.txt
