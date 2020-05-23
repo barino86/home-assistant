@@ -14,6 +14,7 @@
 !switches
 !switches/*
 !sensors
+sensors/nas_speedtest.txt
 !sensors/*
 !includes
 !includes/*
@@ -23,6 +24,5 @@ includes/disabled
 !components
 !components/*
 !automations
-!automations/*
 automations/homeseer_5taps_secret.yaml
-sensors/nas_speedtest.txt
+!automations/*
