@@ -20,7 +20,6 @@ includes/disabled
 !custom_components
 !custom_components/*
 !components/*.yaml
-!automations/*.yaml
-automations/homeseer_5taps_secret.yaml
 automations/*secret.yaml
 automations/*.disabled
+!automations/*.yaml
