@@ -13,6 +13,8 @@
 !www/*
 !switches/*.yaml
 !sensors/*.yaml
+sensors/*secret.yaml
+sensors/*.disabled
 !includes/*.yaml
 includes/disabled
 !custom_components
