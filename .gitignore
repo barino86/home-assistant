@@ -20,6 +20,7 @@ includes/disabled
 !custom_components
 !custom_components/*
 !components/*.yaml
+!automations
 automations/*secret.yaml
-automations/*.disabled
+automations/*disabled
 !automations/*.yaml
